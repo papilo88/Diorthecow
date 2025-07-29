@@ -132,9 +132,10 @@
             backdrop-filter: blur(20px);
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             transition: right 0.3s ease;
-            z-index: 100;
-            padding: 80px 30px 30px 30px;
+            z-index: 1002;
+            padding: 100px 30px 30px 30px;
             box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            overflow-y: auto;
         }
 
         .sidebar-menu.active {
@@ -151,7 +152,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 99;
+            z-index: 1001;
         }
 
         .sidebar-overlay.active {
@@ -616,7 +617,7 @@
     <!-- Sidebar Menu -->
     <div class="sidebar-menu" id="sidebarMenu">
         <ul class="sidebar-nav">
-            <li><a href="Index.html">🏠 Home</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
             <li><a href="about.html">📖 About</a></li>
             <li><a href="features.html">⭐ Features</a></li>
             <li><a href="tokenomics.html">💰 Tokenomics</a></li>
@@ -629,15 +630,13 @@
     <div class="header container">
         <div class="logo">
             <img src="dior.jpg" alt="Dior Logo" class="logo-image">
-            DiorTheCow
+            <span class="logo-text">$DIOR</span>
         </div>
         
-        <div class="center-section">
-            <div class="social-links">
-                <a href="https://arenabook.xyz" target="_blank" rel="noopener noreferrer" class="social-link-btn buy-button">Buy $DIOR</a>
-                <a href="https://x.com/diorthecow?s=21" target="_blank" rel="noopener noreferrer" class="social-link-btn">Follow on X</a>
-                <a href="https://arena.social/Diorthecow" target="_blank" rel="noopener noreferrer" class="social-link-btn">Join The Herd</a>
-            </div>
+        <!-- Theme Toggle with Text -->
+        <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+            <span id="themeText">Dark Mode</span>
+            <div class="theme-toggle-switch"></div>
         </div>
         
         <div class="hamburger-menu" id="hamburgerMenu">
