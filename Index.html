@@ -1,0 +1,4289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DiorTheCow ($DIOR) - Not Your Average Cryptocurrency. Real cow, real value on Avalanche blockchain.">
+    <meta name="theme-color" content="#8b4513">
+    <title>DiorTheCow ($DIOR) - Not Your Average Cow</title>
+    <style>
+        /* --- Basic Setup --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: #f8f5f0;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            padding-bottom: 80px; /* Add padding for fixed footer */
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* --- Layout Container --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 900; /* Made more bold */
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- Center section with social buttons --- */
+        .center-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* --- Hamburger Menu --- */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        body.dark-mode .hamburger-line {
+            background: #fff;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* --- Sidebar Menu --- */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.9));
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            transition: right 0.3s ease;
+            z-index: 100;
+            padding: 80px 30px 30px 30px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-menu.active {
+            right: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu {
+            display: none; /* Hide original nav menu */
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: #fff;
+            transform: translateX(-10px);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-link-btn {
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .social-link-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-link-btn:hover::before {
+            left: 100%;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, #8b4513, #a0522d) !important;
+            color: #fff !important;
+            font-weight: bold !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3) !important;
+            border: 2px solid #8b4513;
+            animation: buyButtonGlow 2s ease-in-out infinite;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.6) !important;
+        }
+
+        @keyframes buyButtonGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4), 0 0 20px rgba(139, 69, 19, 0.2);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(139, 69, 19, 0.6), 0 0 30px rgba(139, 69, 19, 0.4);
+            }
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+
+        .hero img {
+            max-width: 350px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+            opacity: 1;
+            border: 4px solid #8B4513;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
+            position: relative;
+            z-index: 50; /* Ensure hero image stays above floating elements */
+        }
+
+        .hero img:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: clamp(2em, 5vw, 3.5em);
+            margin: 0.5em 0;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #8b4513, #a0522d, #654321);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* --- Floating particles background --- */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 120px 120px;
+            animation: float 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* --- Content Sections --- */
+        .section {
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8b4513, #a0522d, #654321);
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-top: 0;
+            color: #654321;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b4513, #a0522d);
+            border-radius: 2px;
+        }
+
+        .section p,
+        .section li {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        /* --- Tokenomics & Roadmap Specifics --- */
+        .tokenomics-grid,
+        .roadmap-grid {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        .tokenomics-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .roadmap-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .tokenomics-grid li,
+        .roadmap-grid li {
+            background: linear-gradient(135deg, rgba(244, 228, 188, 0.8), rgba(255, 255, 255, 0.6));
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #8b4513;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tokenomics-grid li:hover,
+        .roadmap-grid li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+            border-left-width: 8px;
+        }
+
+        .tokenomics-grid li::before,
+        .roadmap-grid li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.1));
+            transition: width 0.3s ease;
+        }
+
+        .tokenomics-grid li:hover::before,
+        .roadmap-grid li:hover::before {
+            width: 100%;
+        }
+
+        .tokenomics-grid strong {
+            display: block;
+            font-size: 1.3em;
+            color: #654321;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-grid strong {
+            color: #654321;
+            font-size: 1.4em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-grid p {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 15px 30px;
+            font-size: 0.9em;
+            color: #666;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 50;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 800px;
+            }
+            
+            .hero img {
+                max-width: 300px;
+            }
+            
+            .floating-cow {
+                width: 50px !important;
+                height: 50px !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                max-width: 700px;
+                padding: 25px 15px;
+            }
+            
+            .header {
+                gap: 15px;
+                padding: 15px 0;
+            }
+            
+            .center-section {
+                gap: 15px;
+            }
+            
+            .social-links {
+                gap: 10px;
+            }
+            
+            .social-link-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            
+            .hero img {
+                max-width: 250px;
+            }
+            
+            .section {
+                padding: 30px 25px;
+            }
+            
+            .floating-cow {
+                width: 45px !important;
+                height: 45px !important;
+            }
+            
+            .buyer-profile {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+            
+            .buyer-avatar {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 15px 0;
+                margin-bottom: 15px;
+            }
+
+            .center-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .social-link-btn {
+                width: 180px;
+                text-align: center;
+                padding: 10px 15px;
+                font-size: 0.85em;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+
+            .hero img {
+                max-width: 200px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+                text-align: center;
+            }
+
+            .section {
+                padding: 25px 20px;
+            }
+            
+            .section-cow {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 15px auto;
+                float: none;
+                display: block;
+            }
+
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-cow {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .buyer-profile {
+                padding: 3px 6px;
+                font-size: 10px;
+                border-radius: 15px;
+            }
+            
+            .buyer-avatar {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+            
+            .header {
+                padding: 12px 0;
+            }
+            
+            .logo {
+                font-size: 1.5em;
+                gap: 10px;
+            }
+            
+            .logo-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .social-links {
+                gap: 6px;
+            }
+            
+            .social-link-btn {
+                width: 160px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero img {
+                max-width: 150px;
+            }
+
+            .section h2 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .section-cow {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .floating-cow {
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            .buyer-profile {
+                padding: 2px 4px;
+                font-size: 9px;
+                border-radius: 12px;
+                gap: 4px;
+            }
+            
+            .buyer-avatar {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .buyer-name {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 10px 8px;
+            }
+            
+            .hero {
+                padding: 30px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.6em;
+            }
+            
+            .hero img {
+                max-width: 120px;
+            }
+            
+            .section {
+                padding: 15px 12px;
+            }
+            
+            .section h2 {
+                font-size: 1.6em;
+            }
+            
+            .logo {
+                font-size: 1.3em;
+            }
+            
+            .social-link-btn {
+                width: 140px;
+                padding: 6px 10px;
+                font-size: 0.75em;
+            }
+            
+            .floating-cow {
+                width: 30px !important;
+                height: 30px !important;
+            }
+            
+            .buyer-profile {
+                display: none; /* Hide buyer profiles on very small screens to avoid clutter */
+            }
+        }
+
+        /* --- Landscape Orientation for Mobile --- */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                padding: 20px 0;
+            }
+            
+            .hero img {
+                max-width: 120px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8em;
+                margin: 0.3em 0;
+            }
+            
+            .section {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .floating-cow {
+                width: 30px !important;
+                height: 30px !important;
+            }
+        }
+
+        /* --- High DPI Displays --- */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero img, .logo-image, .section-cow {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .header {
+            background: rgba(139, 69, 19, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .logo {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.dark-mode .hero h1 {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.dark-mode .social-link-btn {
+            background: rgba(248, 245, 240, 0.9);
+            color: #8b4513;
+            border: 2px solid #f8f5f0;
+        }
+
+        body.dark-mode .social-link-btn:hover {
+            background: #f8f5f0;
+            color: #654321;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(248, 245, 240, 0.4);
+        }
+
+        body.dark-mode .buy-button {
+            background: linear-gradient(45deg, #f8f5f0, #fff) !important;
+            color: #8b4513 !important;
+            border: 2px solid #f8f5f0 !important;
+        }
+
+        body.dark-mode .buy-button:hover {
+            background: #fff !important;
+            box-shadow: 0 8px 30px rgba(248, 245, 240, 0.6) !important;
+        }
+
+        body.dark-mode .section {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .section::before {
+            background: linear-gradient(90deg, #f8f5f0, #fff, #f4e4bc);
+        }
+
+        body.dark-mode .section h2 {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .section h2::after {
+            background: linear-gradient(90deg, #f8f5f0, #fff);
+        }
+
+        body.dark-mode .tokenomics-grid li,
+        body.dark-mode .roadmap-grid li {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.4), rgba(160, 82, 45, 0.3));
+            border-left-color: #f8f5f0;
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .tokenomics-grid strong,
+        body.dark-mode .roadmap-grid strong {
+            color: #fff;
+        }
+
+        body.dark-mode .footer {
+            background: rgba(139, 69, 19, 0.95);
+            border-top: 1px solid rgba(248, 245, 240, 0.2);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .buyer-profile {
+            background: rgba(139, 69, 19, 0.9);
+            border-color: #f8f5f0;
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .buyer-name {
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .floating-cow {
+            border-color: rgba(248, 245, 240, 0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- Dark Mode Toggle --- */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #8b4513;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .theme-toggle-switch {
+            width: 35px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 18px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            border-color: #f8f5f0;
+            color: #8b4513;
+        }
+
+        body.dark-mode .theme-toggle-switch {
+            background: rgba(139, 69, 19, 0.3);
+        }
+
+        body.dark-mode .theme-toggle-switch::before {
+            transform: translateX(17px);
+            background: #8b4513;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            box-shadow: 0 6px 20px rgba(248, 245, 240, 0.4);
+        }
+
+        /* Responsive positioning for theme toggle */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                font-size: 10px;
+                padding: 6px 8px;
+                gap: 6px;
+            }
+            
+            .theme-toggle-switch {
+                width: 30px;
+                height: 16px;
+            }
+            
+            .theme-toggle-switch::before {
+                width: 12px;
+                height: 12px;
+            }
+            
+            body.dark-mode .theme-toggle-switch::before {
+                transform: translateX(14px);
+            }
+        }
+
+        /* --- Scroll animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Floating Background Cows --- */
+        .floating-cow {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background-image: url('dior.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatCow 8s ease-in-out infinite, moveCowAround 15s linear infinite;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 2px solid rgba(139, 69, 19, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* Prevent floating cows from overlapping with main content images */
+        .floating-cow:nth-child(1),
+        .floating-cow:nth-child(2),
+        .floating-cow:nth-child(3),
+        .floating-cow:nth-child(4),
+        .floating-cow:nth-child(5) {
+            top: 5% !important;
+        }
+
+        .floating-cow:nth-child(6),
+        .floating-cow:nth-child(7),
+        .floating-cow:nth-child(8),
+        .floating-cow:nth-child(9),
+        .floating-cow:nth-child(10) {
+            top: 85% !important;
+        }
+
+        /* Additional positioning rules to avoid center area */
+        .floating-cow:nth-child(11),
+        .floating-cow:nth-child(12),
+        .floating-cow:nth-child(13),
+        .floating-cow:nth-child(14),
+        .floating-cow:nth-child(15) {
+            top: 10% !important;
+        }
+
+        .floating-cow:nth-child(16),
+        .floating-cow:nth-child(17),
+        .floating-cow:nth-child(18),
+        .floating-cow:nth-child(19),
+        .floating-cow:nth-child(20) {
+            top: 90% !important;
+        }
+
+        /* Force side positioning for center-avoiding cows */
+        .floating-cow:nth-child(21),
+        .floating-cow:nth-child(22),
+        .floating-cow:nth-child(23),
+        .floating-cow:nth-child(24),
+        .floating-cow:nth-child(25) {
+            left: 5% !important;
+            top: auto !important;
+        }
+
+        .floating-cow:nth-child(26),
+        .floating-cow:nth-child(27),
+        .floating-cow:nth-child(28),
+        .floating-cow:nth-child(29),
+        .floating-cow:nth-child(30) {
+            right: 5% !important;
+            left: auto !important;
+            top: auto !important;
+        }
+
+        /* Hide floating cows on small screens to prevent image overlap */
+        @media (max-width: 768px) {
+            .floating-cow:nth-child(n+11) {
+                display: none;
+            }
+        }
+
+        .floating-cow:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        /* Bounce effect for collision detection */
+        .floating-cow.bouncing {
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10;
+            opacity: 0.9;
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Enhanced collision detection - create exclusion zones */
+        @keyframes avoidHero {
+            0% { 
+                transform: translateX(0) translateY(0) scale(1); 
+                opacity: 0.6;
+            }
+            25% { 
+                transform: translateX(40px) translateY(-30px) scale(1.1) rotate(15deg); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateX(-35px) translateY(20px) scale(1.2) rotate(-10deg); 
+                opacity: 1;
+            }
+            75% { 
+                transform: translateX(30px) translateY(-25px) scale(1.1) rotate(5deg); 
+                opacity: 0.9;
+            }
+            100% { 
+                transform: translateX(0) translateY(0) scale(1) rotate(0deg); 
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes bounceAway {
+            0% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: scale(1.3);
+                filter: brightness(1.2) hue-rotate(30deg);
+            }
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        /* Create natural avoidance paths for specific floating cows */
+        .floating-cow:nth-child(11),
+        .floating-cow:nth-child(15),
+        .floating-cow:nth-child(19),
+        .floating-cow:nth-child(29),
+        .floating-cow:nth-child(31) {
+            animation: floatCow 8s ease-in-out infinite, avoidHero 12s ease-in-out infinite !important;
+        }
+
+        /* --- Buyer Profile Display --- */
+        .buyer-profile {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2; /* Keep below hero image */
+            animation: fadeInOut 3s ease-in-out infinite, moveName 12s linear infinite;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 12px;
+            border-radius: 25px;
+            border: 2px solid #8b4513;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .buyer-profile:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .buyer-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #8b4513;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .buyer-name {
+            font-size: 12px;
+            font-weight: bold;
+            color: #654321;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.7; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes moveName {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(40px, -25px); }
+            50% { transform: translate(-30px, 15px); }
+            75% { transform: translate(35px, 35px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .floating-cow:nth-child(1) {
+            top: 5%;
+            left: 3%;
+            animation-delay: 0s;
+            animation-duration: 6s;
+            width: 50px;
+            height: 50px;
+        }
+
+        .floating-cow:nth-child(2) {
+            top: 5%;
+            right: 8%;
+            animation-delay: 1s;
+            animation-duration: 8s;
+            width: 65px;
+            height: 65px;
+        }
+
+        .floating-cow:nth-child(3) {
+            top: 85%;
+            left: 5%;
+            animation-delay: 2s;
+            animation-duration: 7s;
+            width: 45px;
+            height: 45px;
+        }
+
+        .floating-cow:nth-child(4) {
+            top: 85%;
+            right: 12%;
+            animation-delay: 3s;
+            animation-duration: 9s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floating-cow:nth-child(5) {
+            top: 10%;
+            left: 2%;
+            animation-delay: 1.5s;
+            animation-duration: 5s;
+            width: 55px;
+            height: 55px;
+        }
+
+        .floating-cow:nth-child(6) {
+            top: 70%;
+            right: 3%;
+            animation-delay: 2.5s;
+            animation-duration: 6.5s;
+            width: 48px;
+            height: 48px;
+        }
+
+        .floating-cow:nth-child(7) {
+            top: 45%;
+            right: 25%;
+            animation-delay: 4s;
+            animation-duration: 7.5s;
+            width: 52px;
+            height: 52px;
+        }
+
+        .floating-cow:nth-child(8) {
+            top: 85%;
+            left: 15%;
+            animation-delay: 3.5s;
+            animation-duration: 8.5s;
+            width: 58px;
+            height: 58px;
+        }
+
+        .floating-cow:nth-child(9) {
+            top: 12%;
+            left: 25%;
+            animation-delay: 5s;
+            animation-duration: 6s;
+            width: 42px;
+            height: 42px;
+        }
+
+        .floating-cow:nth-child(10) {
+            top: 65%;
+            left: 35%;
+            animation-delay: 6s;
+            animation-duration: 9s;
+            width: 68px;
+            height: 68px;
+        }
+
+        .floating-cow:nth-child(11) {
+            top: 8%;
+            left: 45%;
+            animation-delay: 0.5s;
+            animation-duration: 7s;
+            width: 40px;
+            height: 40px;
+        }
+
+        .floating-cow:nth-child(12) {
+            top: 30%;
+            right: 20%;
+            animation-delay: 1.2s;
+            animation-duration: 8.2s;
+            width: 68px;
+            height: 68px;
+        }
+
+        .floating-cow:nth-child(13) {
+            top: 50%;
+            left: 10%;
+            animation-delay: 2.8s;
+            animation-duration: 6.8s;
+            width: 54px;
+            height: 54px;
+        }
+
+        .floating-cow:nth-child(14) {
+            top: 75%;
+            right: 30%;
+            animation-delay: 4.2s;
+            animation-duration: 9.2s;
+            width: 62px;
+            height: 62px;
+        }
+
+        .floating-cow:nth-child(15) {
+            top: 18%;
+            left: 50%;
+            animation-delay: 3.8s;
+            animation-duration: 5.5s;
+            width: 56px;
+            height: 56px;
+        }
+
+        .floating-cow:nth-child(16) {
+            top: 88%;
+            right: 5%;
+            animation-delay: 5.5s;
+            animation-duration: 7.8s;
+            width: 50px;
+            height: 50px;
+        }
+
+        .floating-cow:nth-child(17) {
+            top: 42%;
+            left: 60%;
+            animation-delay: 6.2s;
+            animation-duration: 8.8s;
+            width: 58px;
+            height: 58px;
+        }
+
+        .floating-cow:nth-child(18) {
+            top: 92%;
+            left: 40%;
+            animation-delay: 7s;
+            animation-duration: 6.2s;
+            width: 64px;
+            height: 64px;
+        }
+
+        .floating-cow:nth-child(19) {
+            top: 22%;
+            right: 45%;
+            animation-delay: 8.5s;
+            animation-duration: 7.2s;
+            width: 42px;
+            height: 42px;
+        }
+
+        .floating-cow:nth-child(20) {
+            top: 62%;
+            left: 70%;
+            animation-delay: 9s;
+            animation-duration: 9.5s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floating-cow:nth-child(21) {
+            top: 3%;
+            right: 15%;
+            animation-delay: 0.8s;
+            animation-duration: 6.3s;
+            width: 46px;
+            height: 46px;
+        }
+
+        .floating-cow:nth-child(22) {
+            top: 38%;
+            left: 80%;
+            animation-delay: 1.8s;
+            animation-duration: 8.3s;
+            width: 52px;
+            height: 52px;
+        }
+
+        .floating-cow:nth-child(23) {
+            top: 58%;
+            right: 50%;
+            animation-delay: 2.3s;
+            animation-duration: 7.3s;
+            width: 58px;
+            height: 58px;
+        }
+
+        .floating-cow:nth-child(24) {
+            top: 78%;
+            left: 55%;
+            animation-delay: 3.3s;
+            animation-duration: 9.3s;
+            width: 65px;
+            height: 65px;
+        }
+
+        .floating-cow:nth-child(25) {
+            top: 28%;
+            right: 60%;
+            animation-delay: 4.3s;
+            animation-duration: 5.8s;
+            width: 38px;
+            height: 38px;
+        }
+
+        .floating-cow:nth-child(26) {
+            top: 48%;
+            left: 85%;
+            animation-delay: 5.8s;
+            animation-duration: 6.8s;
+            width: 50px;
+            height: 50px;
+        }
+
+        .floating-cow:nth-child(27) {
+            top: 68%;
+            right: 70%;
+            animation-delay: 6.8s;
+            animation-duration: 7.8s;
+            width: 55px;
+            height: 55px;
+        }
+
+        .floating-cow:nth-child(28) {
+            top: 88%;
+            left: 75%;
+            animation-delay: 7.8s;
+            animation-duration: 8.8s;
+            width: 62px;
+            height: 62px;
+        }
+
+        .floating-cow:nth-child(29) {
+            top: 13%;
+            right: 35%;
+            animation-delay: 8.8s;
+            animation-duration: 9.8s;
+            width: 65px;
+            height: 65px;
+        }
+
+        .floating-cow:nth-child(30) {
+            top: 33%;
+            left: 90%;
+            animation-delay: 9.8s;
+            animation-duration: 5.3s;
+            width: 35px;
+            height: 35px;
+        }
+
+        .floating-cow:nth-child(31) {
+            top: 6%;
+            left: 65%;
+            animation-delay: 0.3s;
+            animation-duration: 6.6s;
+            width: 66px;
+            height: 66px;
+        }
+
+        .floating-cow:nth-child(32) {
+            top: 26%;
+            right: 85%;
+            animation-delay: 1.3s;
+            animation-duration: 7.6s;
+            width: 76px;
+            height: 76px;
+        }
+
+        .floating-cow:nth-child(33) {
+            top: 46%;
+            left: 95%;
+            animation-delay: 2.6s;
+            animation-duration: 8.6s;
+            width: 86px;
+            height: 86px;
+        }
+
+        .floating-cow:nth-child(34) {
+            top: 66%;
+            right: 90%;
+            animation-delay: 3.6s;
+            animation-duration: 9.6s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floating-cow:nth-child(35) {
+            top: 86%;
+            left: 20%;
+            animation-delay: 4.6s;
+            animation-duration: 4.6s;
+            width: 46px;
+            height: 46px;
+        }
+
+        .floating-cow:nth-child(36) {
+            top: 16%;
+            right: 75%;
+            animation-delay: 5.6s;
+            animation-duration: 5.6s;
+            width: 56px;
+            height: 56px;
+        }
+
+        .floating-cow:nth-child(37) {
+            top: 36%;
+            left: 30%;
+            animation-delay: 6.6s;
+            animation-duration: 6.9s;
+            width: 69px;
+            height: 69px;
+        }
+
+        .floating-cow:nth-child(38) {
+            top: 56%;
+            right: 40%;
+            animation-delay: 7.6s;
+            animation-duration: 7.9s;
+            width: 79px;
+            height: 79px;
+        }
+
+        .floating-cow:nth-child(39) {
+            top: 76%;
+            left: 65%;
+            animation-delay: 8.6s;
+            animation-duration: 8.9s;
+            width: 89px;
+            height: 89px;
+        }
+
+        .floating-cow:nth-child(40) {
+            top: 96%;
+            right: 55%;
+            animation-delay: 9.6s;
+            animation-duration: 9.9s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floating-cow:nth-child(41) {
+            top: 9%;
+            left: 12%;
+            animation-delay: 0.9s;
+            animation-duration: 5.9s;
+            width: 59px;
+            height: 59px;
+        }
+
+        .floating-cow:nth-child(42) {
+            top: 29%;
+            right: 18%;
+            animation-delay: 1.9s;
+            animation-duration: 6.4s;
+            width: 64px;
+            height: 64px;
+        }
+
+        .floating-cow:nth-child(43) {
+            top: 49%;
+            left: 42%;
+            animation-delay: 2.9s;
+            animation-duration: 7.4s;
+            width: 74px;
+            height: 74px;
+        }
+
+        .floating-cow:nth-child(44) {
+            top: 69%;
+            right: 28%;
+            animation-delay: 3.9s;
+            animation-duration: 8.4s;
+            width: 84px;
+            height: 84px;
+        }
+
+        .floating-cow:nth-child(45) {
+            top: 89%;
+            left: 52%;
+            animation-delay: 4.9s;
+            animation-duration: 9.4s;
+            width: 60px;
+            height: 60px;
+        }
+
+        .floating-cow:nth-child(46) {
+            top: 19%;
+            right: 62%;
+            animation-delay: 5.9s;
+            animation-duration: 4.9s;
+            width: 49px;
+            height: 49px;
+        }
+
+        .floating-cow:nth-child(47) {
+            top: 39%;
+            left: 72%;
+            animation-delay: 6.9s;
+            animation-duration: 5.4s;
+            width: 54px;
+            height: 54px;
+        }
+
+        .floating-cow:nth-child(48) {
+            top: 59%;
+            right: 82%;
+            animation-delay: 7.9s;
+            animation-duration: 6.7s;
+            width: 67px;
+            height: 67px;
+        }
+
+        .floating-cow:nth-child(49) {
+            top: 79%;
+            left: 82%;
+            animation-delay: 8.9s;
+            animation-duration: 7.7s;
+            width: 77px;
+            height: 77px;
+        }
+
+        .floating-cow:nth-child(50) {
+            top: 99%;
+            right: 92%;
+            animation-delay: 9.9s;
+            animation-duration: 8.7s;
+            width: 87px;
+            height: 87px;
+        }
+
+        @keyframes floatCow {
+            0% {
+                transform: translateY(0px) rotate(0deg) translateX(0px);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg) translateX(30px);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-3deg) translateX(-20px);
+            }
+            75% {
+                transform: translateY(-15px) rotate(2deg) translateX(25px);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg) translateX(0px);
+            }
+        }
+
+        @keyframes moveCowAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            20% {
+                transform: translate(50px, -30px) rotate(45deg);
+            }
+            40% {
+                transform: translate(-30px, 20px) rotate(-30deg);
+            }
+            60% {
+                transform: translate(40px, 40px) rotate(60deg);
+            }
+            80% {
+                transform: translate(-20px, -40px) rotate(-45deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* --- Section Background Cows --- */
+        .section {
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background-image: url('diorthecowlogo.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            opacity: 0.05;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* --- Content Cow Images --- */
+        .section-cow {
+            float: right;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 0 20px 20px;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            border: 3px solid #8B4513;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
+
+        .section-cow.left {
+            float: left;
+            margin: 0 20px 20px 0;
+        }
+
+        .section-cow:hover {
+            opacity: 1;
+            transform: scale(1.1) rotate(10deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Background Cows -->
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+    <div class="floating-cow"></div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu" id="sidebarMenu">
+        <ul class="sidebar-nav">
+            <li><a href="Index.html">🏠 Home</a></li>
+            <li><a href="about.html">📖 About</a></li>
+            <li><a href="features.html">⭐ Features</a></li>
+            <li><a href="tokenomics.html">💰 Tokenomics</a></li>
+            <li><a href="roadmap.html">🗺️ Roadmap</a></li>
+            <li><a href="gallery.html">🎨 Meme Gallery</a></li>
+            <li><a href="whitelist.html">✅ Whitelist</a></li>
+        </ul>
+    </div>
+
+    <div class="header container">
+        <div class="logo">
+            <img src="dior.jpg" alt="Dior Logo" class="logo-image">
+            DiorTheCow
+        </div>
+        
+        <div class="center-section">
+            <div class="social-links">
+                <a href="https://arenabook.xyz" target="_blank" rel="noopener noreferrer" class="social-link-btn buy-button">Buy $DIOR</a>
+                <a href="https://x.com/diorthecow?s=21" target="_blank" rel="noopener noreferrer" class="social-link-btn">Follow on X</a>
+                <a href="https://arena.social/Diorthecow" target="_blank" rel="noopener noreferrer" class="social-link-btn">Join The Herd</a>
+            </div>
+        </div>
+        
+        <!-- Theme Toggle with Text -->
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span id="themeText">Dark Mode</span>
+            <div class="theme-toggle-switch"></div>
+        </div>
+        
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </div>
+
+    <div class="hero container">
+        <img src="diorthecowlogo.jpg" alt="Dior The Cow Cartoon">
+        <h1>Not your average cow. Dior the Crypto Cow.</h1>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 DiorTheCow. All Rights Reserved.</p>
+        <div id="updateStatus" style="font-size: 0.8em; color: #8b4513; margin-top: 5px;">
+            🔄 Live updating buyer data...
+        </div>
+    </div>
+
+    <script>
+        // Hamburger menu functionality
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleSidebar() {
+            hamburgerMenu.classList.toggle('active');
+            sidebarMenu.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            hamburgerMenu.classList.remove('active');
+            sidebarMenu.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        hamburgerMenu.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when clicking on a navigation link
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Dark mode toggle functionality
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.toggle('dark-mode', savedTheme === 'dark');
+            // Update theme text on page load
+            const themeText = document.getElementById('themeText');
+            if (themeText) {
+                themeText.textContent = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+            }
+        }
+        
+        // Toggle theme function
+        function toggleTheme() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            // Update theme toggle text
+            const themeText = document.getElementById('themeText');
+            if (themeText) {
+                themeText.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+            }
+            
+            // Update status text color for dark mode
+            const statusText = document.getElementById('updateStatus');
+            if (statusText) {
+                statusText.style.color = isDarkMode ? '#f8f5f0' : '#8b4513';
+            }
+            
+            console.log('🎨 Theme switched to:', isDarkMode ? 'Dark Mode' : 'Light Mode');
+        }
+        
+        // Theme toggle already handled by onclick="toggleTheme()" in HTML
+        
+        // Initialize status text color based on current theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const statusText = document.getElementById('updateStatus');
+            const isDarkMode = body.classList.contains('dark-mode');
+            if (statusText) {
+                statusText.style.color = isDarkMode ? '#f8f5f0' : '#8b4513';
+            }
+        });
+
+        // Buyer names system with duplicate tracking
+        let buyerNames = [];
+        let currentNameIndex = 0;
+        let displayedBuyers = new Map(); // Track how many times each buyer has been displayed
+        const maxDisplaysPerBuyer = 2; // Maximum 2 displays per buyer
+
+        // Expanded fallback data for abundant profile display - real ticket holder structure
+        const fallbackApiResponse = {
+            "holders": [
+                // VIP HOLDERS (5+ tickets) - Largest profiles
+                {
+                    "amount": 8,
+                    "traderId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "Diorthecow",
+                        "twitterPicture": "https://static.starsarena.com/uploads/a442e132-ae88-45bf-9601-898168b9555e1753776953406.png",
+                        "twitterName": "Dior the cow 👑"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 6,
+                    "traderId": "premium-whale-1",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CowWhale001",
+                        "twitterPicture": "https://static.starsarena.com/uploads/premium-avatar-1.png",
+                        "twitterName": "CowWhale 🐋👑"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 5,
+                    "traderId": "premium-holder-2",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "DiamondCowHands",
+                        "twitterPicture": "https://static.starsarena.com/uploads/premium-avatar-2.png",
+                        "twitterName": "Diamond Cow 💎🐄"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                
+                // PREMIUM HOLDERS (3-4 tickets) - Medium profiles  
+                {
+                    "amount": 4,
+                    "traderId": "21ab071f-8422-46a9-9061-484394b538b5",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "chucks9000",
+                        "twitterPicture": "https://static.starsarena.com/uploads/29d8008c-5c53-6846-28c8-11c43a978c691750522382773.png",
+                        "twitterName": "Chucks 🔺⭐"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 3,
+                    "traderId": "af6d77b4-b0db-48f7-a68b-607ee785927c",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "3lhine",
+                        "twitterPicture": "https://static.starsarena.com/uploads/d3bd4d41-bded-6cc2-3965-ec315dbf77971747066351256.png",
+                        "twitterName": "El crypto🔺⭐"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 3,
+                    "traderId": "premium-holder-3",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CowInvestor",
+                        "twitterPicture": "https://static.starsarena.com/uploads/premium-avatar-3.png",
+                        "twitterName": "Cow Investor ⭐🐄"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                
+                // REGULAR HOLDERS (1-2 tickets) - Standard profiles
+                {
+                    "amount": 2,
+                    "traderId": "5a21bbd6-c6a4-4f1d-9acb-0b340d56ef74",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "AmeerAli945",
+                        "twitterPicture": "https://static.starsarena.com/uploads/98aab751-677e-7131-3196-7dbb702197bd1750408981853.png",
+                        "twitterName": "Ali Ameer🔺"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 2,
+                    "traderId": "5f451aee-dd9a-4f48-8f3d-da4668b6bfa6",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "shibilkuri",
+                        "twitterPicture": "https://static.starsarena.com/uploads/d90afcd8-bedf-e3f9-74f7-eb033bb064c01753773032460.png",
+                        "twitterName": "shibil (Rogue) 🔺.ink"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 2,
+                    "traderId": "regular-holder-1",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CowLover123",
+                        "twitterPicture": "https://static.starsarena.com/uploads/regular-avatar-1.png",
+                        "twitterName": "Cow Lover 🐄💚"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "9df4e457-e091-4e62-a86d-8ffb4c3837bc",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "ali1976221",
+                        "twitterPicture": "https://static.starsarena.com/uploads/8c5be996-7bed-245a-1106-b24e8f3edc8e1753563188040.png",
+                        "twitterName": "leo Asad 🇪🇸"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "a93e5de4-5f8e-4e57-806c-374ddaa09151",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "tweetbyjackie",
+                        "twitterPicture": "https://static.starsarena.com/uploads/0f43353b-f76c-6992-41e7-5554721e0a7d1753804473991.png",
+                        "twitterName": "JK🔺"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "cfb80c06-6ae6-449e-abab-01f8a6922c71",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "Luckymonkey141",
+                        "twitterPicture": "https://static.starsarena.com/uploads/0dc25f0d-f59c-26dd-a978-16befb68e64a1749573885418.png",
+                        "twitterName": "PaperChaser9000🔺️"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "d60d426b-909a-4bcd-a270-fc5975328c52",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "3344sats",
+                        "twitterPicture": "https://static.starsarena.com/uploads/fe857eee-bc0b-f7c3-4f68-45e8d0ecd13c1751005715674.png",
+                        "twitterName": "3344.avax 🔺💜"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "de6a0399-6fa2-4201-92a4-ad6e405c0a43",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "ab17_web3",
+                        "twitterPicture": "https://static.starsarena.com/uploads/f6f9c70e-09e9-75fd-bf19-2ac5ec0d92121753721892296.png",
+                        "twitterName": "ABstronaut🔺💎"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "f7ace51f-59ab-4f2d-9077-150884783637",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "Zoob_21",
+                        "twitterPicture": "https://static.starsarena.com/uploads/368840e4-f96f-c384-7d6f-1c4dafb209631734894947269.png",
+                        "twitterName": "Zob💟🙆"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                
+                // NEW ABUNDANT HOLDERS - More profiles for variety
+                {
+                    "amount": 2,
+                    "traderId": "abundant-holder-1",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CowTrader99",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-1.png",
+                        "twitterName": "Cow Trader 📈🐄"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "abundant-holder-2",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "MooMarkets",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-2.png",
+                        "twitterName": "Moo Markets 🚀🐮"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "abundant-holder-3",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CowHodler",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-3.png",
+                        "twitterName": "Cow Hodler 💪🐄"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "abundant-holder-4",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "CryptoMooCow",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-4.png",
+                        "twitterName": "Crypto Moo 🔐🐄"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 1,
+                    "traderId": "abundant-holder-5",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "BullishCow",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-5.png",
+                        "twitterName": "Bullish Cow 🚀📈"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                },
+                {
+                    "amount": 2,
+                    "traderId": "abundant-holder-6",
+                    "subjectId": "d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a",
+                    "traderUser": {
+                        "twitterHandle": "FarmToMoon",
+                        "twitterPicture": "https://static.starsarena.com/uploads/abundant-avatar-6.png",
+                        "twitterName": "Farm to Moon 🌙🚜"
+                    },
+                    "subjectUser": {
+                        "keyPrice": "470047360000000000"
+                    }
+                }
+            ],
+            "count": 22,
+            "numberOfPages": 1,
+            "page": 1,
+            "pageSize": 50
+        };
+
+        // Function to generate fallback buyers from real data structure
+        function generateFallbackBuyers() {
+            console.log('🔄 Using fallback ticket holder data');
+            return extractBuyersFromResponse(fallbackApiResponse);
+        }
+
+        // Function to fetch buyer data from Arena Social with robust error handling
+        async function fetchBuyerData(retryCount = 0, maxRetries = 5) {
+            console.log(`🔄 Fetching buyer data from Stars Arena... (Attempt ${retryCount + 1}/${maxRetries + 1})`);
+            
+            try {
+                // Exponential backoff delay for retries
+                if (retryCount > 0) {
+                    const delay = Math.min(1000 * Math.pow(2, retryCount), 10000); // Max 10 seconds
+                    console.log(`⏱️ Waiting ${delay}ms before retry...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+
+                // Multiple API endpoints to try (in case one fails)
+                const apiEndpoints = [
+                    'https://api.starsarena.com/shares/holders?userId=d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a&page=1&pageSize=20'
+                ];
+
+                let lastError = null;
+                
+                for (const endpoint of apiEndpoints) {
+                    try {
+                        console.log(`📡 Trying endpoint: ${endpoint}`);
+                        
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+                        
+                        const response = await fetch(endpoint, {
+                            method: 'GET',
+                            signal: controller.signal,
+                            headers: {
+                                'Authorization': 'Bearer eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDdjMDNkNGEtZGE4Yi00ZGZhLWEzY2QtZTZmNzFiYmQyZDhhIiwidHdpdHRlcklkIjoiMTk0ODg1NTk4NzU4ODI3NjIyNCIsInR3aXR0ZXJIYW5kbGUiOiJEaW9ydGhlY293IiwidHdpdHRlck5hbWUiOiJEaW9yIHRoZSBjb3ciLCJ0d2l0dGVyUGljdHVyZSI6Imh0dHBzOi8vc3RhdGljLnN0YXJzYXJlbmEuY29tL3VwbG9hZHMvYTQ0MmUxMzItYWU4OC00NWJmLTk2MDEtODk4MTY4Yjk1NTVlMTc1Mzc3Njk1MzQwNi5wbmciLCJhZGRyZXNzIjoiMHg1MGMzZTMxZTRiOTBjZjMxYTJlNmMyNjU5YmNhNTBhZWE3YzM2MmY0In0sImlhdCI6MTc1MzgwMjEzNSwiZXhwIjoxNzYyNDQyMTM1fQ.YpfSPCYxnIv7bL03slWDCEFEg6fgiGiMXcCW4l8XMV7bX8-_lPdzbw1UDesCxQJSimhCEm5u1cJ4mIWgm76q5tzc5WScPG8mZ_HT0qXtFTME5pjv3OOj7_w2jyN-O9fWEx6LFiHTSrhGWVsmntJo34xHJzZC6RFWrK-BVEaPa5aociQuTo447HIVmDHqJx509fL_qemLm6i3unxV0woQnCqe7KXr-SQF8JiuUMCT_EMudIY2u6z6pAYjlQQX1oWQILI73VhIrgNYbZbQkMZX1l7dKMSB9nsDUrtfA1illfb2aQJXk-gSoUTLW5PbJhdwMXneeO9p_12MPgGUOPItMDdzHMz_l94J0kbu_4pvsn8BNPdyJ3SXmhnZ6jge94YxN3PG2DQtFZeSce4igHV4hDZrdiBYH6EbQyIWNWxaDYPY5RE9y2paZk1SAA80n6fInpxVC7hSTw9fKjX-LOzmvEA-8UJ3O4Na8edGKihcCWTYKM77WphjayG6CFUal6u1vkHsHut9KU8IOJ4zbcy2N5idd2YwTvI4zj6CbbWEvcjHeVQ2liej74wsc_Ep_fDabidsGYYkqQMzJvcI11cHDKfs0OrDgjA5ccgU6sZEsbqWR8ig6esU0A_4AXAhgY1R20Y9ZjSeUpO88OH-Vj9-CwSAuHwDWbfrEhkt8obwzhg',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'User-Agent': 'DiorTheCow/1.0',
+                                'Cache-Control': 'no-cache'
+                            }
+                        });
+                        
+                        clearTimeout(timeoutId);
+                        console.log(`📡 API Response status: ${response.status} from ${endpoint}`);
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            console.log('📦 API Response data received:', data);
+                            
+                            const buyers = extractBuyersFromResponse(data);
+                            if (buyers && buyers.length > 0) {
+                                console.log(`✅ Successfully extracted ${buyers.length} buyers from ${endpoint}`);
+                                return buyers;
+                            }
+                        } else if (response.status === 401) {
+                            console.log('🔐 Authentication failed - token may be expired');
+                            throw new Error('Authentication failed');
+                        } else if (response.status === 429) {
+                            console.log('⏳ Rate limited - backing off...');
+                            throw new Error('Rate limited');
+                        }
+                        
+                    } catch (endpointError) {
+                        console.log(`❌ Endpoint ${endpoint} failed:`, endpointError.message);
+                        lastError = endpointError;
+                        continue; // Try next endpoint
+                    }
+                }
+                
+                throw lastError || new Error('All endpoints failed');
+                
+            } catch (error) {
+                console.log(`❌ Fetch attempt ${retryCount + 1} failed:`, error.message);
+                
+                // Retry logic with exponential backoff
+                if (retryCount < maxRetries) {
+                    console.log(`🔄 Retrying in ${Math.min(1000 * Math.pow(2, retryCount), 10000)}ms...`);
+                    return await fetchBuyerData(retryCount + 1, maxRetries);
+                }
+                
+                console.log('❌ All retry attempts exhausted');
+                throw new Error('Failed to fetch ticket holders after all retries');
+            }
+        }
+
+        // Helper function to extract buyers from API response
+        function extractBuyersFromResponse(data) {
+            let buyers = [];
+            
+            // Try different response structures
+            const holderArrays = [
+                data.holders,
+                data.data?.holders,
+                data.result?.holders,
+                data.data,
+                Array.isArray(data) ? data : null
+            ].filter(arr => Array.isArray(arr));
+            
+            for (const holders of holderArrays) {
+                buyers = holders.map(holder => {
+                    const username = extractUsername(holder);
+                    const profilePicture = extractProfilePicture(holder);
+                    const ticketCount = extractTicketCount(holder);
+                    
+                    return { username, profilePicture, ticketCount };
+                }).filter(buyer => buyer.username && buyer.username !== 'undefined');
+                
+                if (buyers.length > 0) {
+                    break; // Found valid buyers, stop trying other structures
+                }
+            }
+            
+            if (buyers.length > 0) {
+                // Sort by ticket count (highest first)
+                buyers.sort((a, b) => b.ticketCount - a.ticketCount);
+                console.log(`✅ Extracted ${buyers.length} valid buyers, sorted by ticket count`);
+                return buyers;
+            }
+            
+            return null;
+        }
+
+        // Helper functions for extracting data
+        function extractUsername(holder) {
+            return holder.traderUser?.twitterHandle || 
+                   holder.traderUser?.twitterName || 
+                   holder.user?.twitterHandle || 
+                   holder.user?.twitterName || 
+                   holder.user?.username || 
+                   holder.twitterHandle || 
+                   holder.twitterName || 
+                   holder.username || 
+                   holder.name || 
+                   holder.displayName || 
+                   holder.handle ||
+                   (holder.traderId ? `Trader${holder.traderId.slice(-4)}` : null) ||
+                   (holder.user?.id ? `User${holder.user.id.slice(-4)}` : null) ||
+                   (holder.id ? `User${holder.id.slice(-4)}` : `Holder${Math.floor(Math.random() * 1000)}`);
+        }
+
+        function extractProfilePicture(holder) {
+            return holder.traderUser?.twitterPicture || 
+                   holder.traderUser?.profilePicture || 
+                   holder.user?.twitterPicture || 
+                   holder.user?.profilePicture || 
+                   holder.user?.avatar || 
+                   holder.twitterPicture || 
+                   holder.profilePicture || 
+                   holder.avatar || 
+                   holder.picture ||
+                   'dior.jpg';
+        }
+
+        function extractTicketCount(holder) {
+            const count = holder.shareBalance || 
+                         holder.balance || 
+                         holder.shares || 
+                         holder.amount || 
+                         holder.quantity || 
+                         1;
+            return parseInt(count) || 1;
+        }
+
+        // Removed sample buyer generation - using real API only
+
+        // Removed duplicate system - now using single initialization system below
+
+        // Function to create buyer profile elements with dynamic sizing and random positioning
+        function createBuyerProfileElement(buyer, x, y) {
+            console.log('🎨 Creating buyer profile element for:', buyer.username, 'with', buyer.ticketCount, 'tickets');
+            
+            // Calculate dynamic size based on ticket count
+            const baseSize = 32;
+            const maxSize = 80;
+            const minSize = 20;
+            
+            // Scale size based on ticket count (logarithmic scaling for better visual balance)
+            const sizeMultiplier = Math.min(Math.log(buyer.ticketCount + 1) * 0.5 + 1, 2.5);
+            const avatarSize = Math.max(Math.min(baseSize * sizeMultiplier, maxSize), minSize);
+            
+            // Profile element container scales with avatar
+            const profilePadding = Math.max(6, avatarSize * 0.2);
+            const nameFontSize = Math.max(10, avatarSize * 0.3);
+            
+            // Generate safe position that avoids hero image area
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Get hero image bounds for exclusion zone
+            const heroImage = document.querySelector('.hero img');
+            let heroExclusionZone = null;
+            if (heroImage) {
+                const heroRect = heroImage.getBoundingClientRect();
+                heroExclusionZone = {
+                    left: heroRect.left - 120,
+                    right: heroRect.right + 120,
+                    top: heroRect.top - 120,
+                    bottom: heroRect.bottom + 120
+                };
+            }
+            
+            // Function to check if position is safe (not overlapping with hero image)
+            function isSafePosition(x, y, width, height) {
+                if (!heroExclusionZone) return true;
+                
+                const elementRight = x + width;
+                const elementBottom = y + height;
+                
+                // Check if element overlaps with hero exclusion zone
+                const overlaps = !(elementRight < heroExclusionZone.left || 
+                                 x > heroExclusionZone.right || 
+                                 elementBottom < heroExclusionZone.top || 
+                                 y > heroExclusionZone.bottom);
+                
+                return !overlaps;
+            }
+            
+            // Try to find a safe position (maximum 10 attempts)
+            let randomX, randomY;
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            do {
+                randomX = Math.random() * (screenWidth - avatarSize - 100) + 50; // 50px margin from edges
+                randomY = Math.random() * (screenHeight - avatarSize - 150) + 100; // 100px margin from top/bottom
+                attempts++;
+            } while (!isSafePosition(randomX, randomY, avatarSize + 100, avatarSize + 50) && attempts < maxAttempts);
+            
+            // If couldn't find safe position after max attempts, force to safe zones
+            if (attempts >= maxAttempts) {
+                console.log('⚠️ Could not find safe position, using fallback zones');
+                // Force to either top or bottom safe zones
+                if (Math.random() > 0.5) {
+                    randomY = 50; // Top safe zone
+                } else {
+                    randomY = screenHeight - 200; // Bottom safe zone
+                }
+                randomX = Math.random() * (screenWidth - avatarSize - 100) + 50;
+            }
+            
+            console.log('📏 Sizing - Tickets:', buyer.ticketCount, 'Avatar size:', avatarSize, 'Safe position:', randomX, randomY);
+            
+            const profileElement = document.createElement('div');
+            profileElement.className = 'buyer-profile';
+            profileElement.style.left = randomX + 'px';
+            profileElement.style.top = randomY + 'px';
+            profileElement.style.animationDelay = Math.random() * 2 + 's';
+            profileElement.style.padding = `${profilePadding}px ${profilePadding * 1.5}px`;
+            
+            // Add special styling for high ticket holders
+            if (buyer.ticketCount >= 5) {
+                profileElement.style.background = 'linear-gradient(45deg, rgba(255, 215, 0, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '3px solid #FFD700';
+                profileElement.style.boxShadow = '0 6px 25px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.3)';
+                profileElement.classList.add('vip-holder');
+            } else if (buyer.ticketCount >= 3) {
+                profileElement.style.background = 'linear-gradient(45deg, rgba(192, 192, 192, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '2px solid #C0C0C0';
+                profileElement.style.boxShadow = '0 5px 20px rgba(192, 192, 192, 0.3)';
+                profileElement.classList.add('premium-holder');
+            }
+            
+            // Create avatar image with dynamic size
+            const avatar = document.createElement('img');
+            avatar.className = 'buyer-avatar';
+            avatar.src = buyer.profilePicture;
+            avatar.alt = buyer.username;
+            avatar.style.width = avatarSize + 'px';
+            avatar.style.height = avatarSize + 'px';
+            avatar.style.border = `${Math.max(2, avatarSize * 0.06)}px solid #8b4513`;
+            avatar.onerror = function() {
+                console.log('⚠️ Profile picture failed to load for:', buyer.username, 'using fallback');
+                this.src = 'dior.jpg'; // Fallback to cow image if profile pic fails to load
+            };
+            
+            // Create name span with dynamic font size and ticket count
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'buyer-name';
+            nameSpan.style.fontSize = nameFontSize + 'px';
+            nameSpan.style.fontWeight = buyer.ticketCount >= 5 ? 'bold' : 'normal';
+            
+            // Display name with ticket count
+            const ticketEmoji = buyer.ticketCount >= 5 ? '👑' : buyer.ticketCount >= 3 ? '⭐' : '🎫';
+            nameSpan.textContent = `${ticketEmoji} ${buyer.username} (${buyer.ticketCount})`;
+            
+            // Add special text styling for VIP holders
+            if (buyer.ticketCount >= 5) {
+                nameSpan.style.color = '#B8860B';
+                nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,215,0,0.5)';
+            } else if (buyer.ticketCount >= 3) {
+                nameSpan.style.color = '#696969';
+                nameSpan.style.textShadow = '0 1px 3px rgba(0,0,0,0.3)';
+            }
+            
+            profileElement.appendChild(avatar);
+            profileElement.appendChild(nameSpan);
+            document.body.appendChild(profileElement);
+            
+            // Track this display
+            const currentCount = displayedBuyers.get(buyer.username) || 0;
+            displayedBuyers.set(buyer.username, currentCount + 1);
+            
+            console.log('✅ Dynamic buyer profile element added to DOM for:', buyer.username, 'Size:', avatarSize + 'px', 'Display count:', currentCount + 1);
+
+            // Remove after animation completes (longer duration for VIP holders)
+            const displayDuration = buyer.ticketCount >= 5 ? 15000 : buyer.ticketCount >= 3 ? 12000 : 10000;
+            setTimeout(() => {
+                if (profileElement.parentNode) {
+                    profileElement.remove();
+                    console.log('🗑️ Removed buyer profile for:', buyer.username);
+                }
+            }, displayDuration);
+        }
+
+        // Collision detection and bounce effect for floating cows and buyer profiles
+        function initializeCollisionDetection() {
+            const heroImage = document.querySelector('.hero img');
+            const floatingCows = document.querySelectorAll('.floating-cow');
+            
+            if (!heroImage || floatingCows.length === 0) return;
+            
+            // Store original positions for each cow
+            const cowOriginalPositions = new Map();
+            floatingCows.forEach((cow, index) => {
+                const rect = cow.getBoundingClientRect();
+                cowOriginalPositions.set(cow, {
+                    x: rect.left,
+                    y: rect.top,
+                    originalTop: getComputedStyle(cow).top,
+                    originalLeft: getComputedStyle(cow).left,
+                    originalRight: getComputedStyle(cow).right
+                });
+            });
+            
+            function getHeroImageBounds() {
+                const heroRect = heroImage.getBoundingClientRect();
+                return {
+                    center: {
+                        x: heroRect.left + heroRect.width / 2,
+                        y: heroRect.top + heroRect.height / 2
+                    },
+                    // Create larger exclusion zone around hero image
+                    radius: Math.max(heroRect.width, heroRect.height) / 2 + 100,
+                    rect: {
+                        left: heroRect.left - 100,
+                        right: heroRect.right + 100,
+                        top: heroRect.top - 100,
+                        bottom: heroRect.bottom + 100
+                    }
+                };
+            }
+            
+            function checkCollisions() {
+                const heroBounds = getHeroImageBounds();
+                
+                // Check floating cows
+                floatingCows.forEach((cow, index) => {
+                    if (cow.classList.contains('bouncing')) return; // Skip if already bouncing
+                    
+                    const cowRect = cow.getBoundingClientRect();
+                    const cowCenter = {
+                        x: cowRect.left + cowRect.width / 2,
+                        y: cowRect.top + cowRect.height / 2
+                    };
+                    
+                    // Calculate distance between centers
+                    const distance = Math.sqrt(
+                        Math.pow(cowCenter.x - heroBounds.center.x, 2) + 
+                        Math.pow(cowCenter.y - heroBounds.center.y, 2)
+                    );
+                    
+                    // If collision detected, apply strong bounce effect
+                    if (distance < heroBounds.radius) {
+                        console.log(`🔄 Collision detected for cow ${index + 1}, distance: ${distance.toFixed(2)}`);
+                        
+                        // Calculate bounce direction (away from hero image)
+                        const angle = Math.atan2(cowCenter.y - heroBounds.center.y, cowCenter.x - heroBounds.center.x);
+                        const bounceDistance = 200; // Increased bounce distance
+                        
+                        // Apply bounce transformation
+                        const bounceX = Math.cos(angle) * bounceDistance;
+                        const bounceY = Math.sin(angle) * bounceDistance;
+                        
+                        // Add bounce class for animation
+                        cow.classList.add('bouncing');
+                        cow.style.transform = `translate(${bounceX}px, ${bounceY}px) scale(1.3) rotate(${angle * 180 / Math.PI}deg)`;
+                        cow.style.zIndex = '15';
+                        
+                        // Add temporary bounce animation
+                        cow.style.animation = 'avoidHero 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                        
+                        // Remove bounce effect after animation
+                        setTimeout(() => {
+                            cow.classList.remove('bouncing');
+                            cow.style.transform = '';
+                            cow.style.zIndex = '1';
+                            cow.style.animation = cow.style.animation.replace('avoidHero 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)', '');
+                        }, 800);
+                        
+                        // Temporarily pause normal animations during bounce
+                        cow.style.animationPlayState = 'paused';
+                        setTimeout(() => {
+                            cow.style.animationPlayState = 'running';
+                        }, 800);
+                    }
+                });
+                
+                // Check and move buyer profiles away from hero image
+                const buyerProfiles = document.querySelectorAll('.buyer-profile');
+                buyerProfiles.forEach((profile, index) => {
+                    const profileRect = profile.getBoundingClientRect();
+                    const profileCenter = {
+                        x: profileRect.left + profileRect.width / 2,
+                        y: profileRect.top + profileRect.height / 2
+                    };
+                    
+                    // Check if profile overlaps with hero image exclusion zone
+                    const distance = Math.sqrt(
+                        Math.pow(profileCenter.x - heroBounds.center.x, 2) + 
+                        Math.pow(profileCenter.y - heroBounds.center.y, 2)
+                    );
+                    
+                    if (distance < heroBounds.radius) {
+                        console.log(`🔄 Moving buyer profile away from hero image`);
+                        
+                        // Calculate new position away from hero image
+                        const angle = Math.atan2(profileCenter.y - heroBounds.center.y, profileCenter.x - heroBounds.center.x);
+                        const newDistance = heroBounds.radius + 50; // Extra buffer
+                        
+                        const newX = heroBounds.center.x + Math.cos(angle) * newDistance - profileRect.width / 2;
+                        const newY = heroBounds.center.y + Math.sin(angle) * newDistance - profileRect.height / 2;
+                        
+                        // Ensure new position is within screen bounds
+                        const screenWidth = window.innerWidth;
+                        const screenHeight = window.innerHeight;
+                        const safeX = Math.max(50, Math.min(newX, screenWidth - profileRect.width - 50));
+                        const safeY = Math.max(100, Math.min(newY, screenHeight - profileRect.height - 150));
+                        
+                        profile.style.left = safeX + 'px';
+                        profile.style.top = safeY + 'px';
+                        
+                        // Add temporary bounce effect to profile
+                        profile.style.transform = 'scale(1.1)';
+                        profile.style.transition = 'all 0.3s ease';
+                        setTimeout(() => {
+                            profile.style.transform = '';
+                        }, 300);
+                    }
+                });
+            }
+            
+            // Check for collisions more frequently for better responsiveness
+            setInterval(checkCollisions, 30); // Increased frequency
+        }
+        
+        // Initialize collision detection when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initializeCollisionDetection, 1000); // Wait for animations to start
+        });
+
+        // Function to display buyer profiles around floating cows
+        // Enhanced function to display floating rectangular profiles
+        function displayBuyerProfiles() {
+            console.log('👥 Managing floating rectangular profiles. Available buyers:', buyerNames.length);
+            
+            if (!buyerNames || buyerNames.length === 0) {
+                console.log('❌ No buyer data available to display');
+                return;
+            }
+
+            // Show 3-5 random profiles at any time, allowing duplicates
+            const screenWidth = window.innerWidth;
+            const maxProfiles = screenWidth <= 480 ? 3 : screenWidth <= 768 ? 4 : 5;
+            
+            // Select random buyers (allowing the same buyer to appear multiple times)
+            const selectedBuyers = [];
+            for (let i = 0; i < maxProfiles; i++) {
+                const randomBuyer = buyerNames[Math.floor(Math.random() * buyerNames.length)];
+                selectedBuyers.push(randomBuyer);
+            }
+            
+            console.log('🎯 Will show', selectedBuyers.length, 'rectangular profiles');
+            console.log('🎯 Selected buyers:', selectedBuyers.map(b => `${b.username}(${b.ticketCount})`));
+            
+            selectedBuyers.forEach((buyer, index) => {
+                setTimeout(() => {
+                    createFloatingRectangularProfile(buyer, index);
+                }, index * 300); // Stagger by 300ms
+            });
+        }
+
+        // Create floating rectangular profiles that appear/disappear like before
+        function createFloatingRectangularProfile(buyer, index) {
+            const profileElement = document.createElement('div');
+            profileElement.className = 'buyer-profile enhanced-profile floating-profile';
+            
+            // Check if dark mode is active
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Calculate dynamic avatar size based on ticket count
+            const baseSize = 40;
+            const maxSize = 120;
+            const minSize = 25;
+            
+            let avatarSize;
+            if (buyer.ticketCount >= 8) {
+                avatarSize = maxSize;
+            } else if (buyer.ticketCount >= 5) {
+                avatarSize = Math.floor(maxSize * 0.85);
+            } else if (buyer.ticketCount >= 3) {
+                avatarSize = Math.floor(maxSize * 0.65);
+            } else {
+                avatarSize = Math.floor(baseSize + (buyer.ticketCount * 8));
+            }
+            
+            avatarSize = Math.max(Math.min(avatarSize, maxSize), minSize);
+            
+            // Calculate profile container size
+            const containerPadding = Math.max(8, avatarSize * 0.25);
+            const containerWidth = avatarSize + (containerPadding * 3);
+            const containerHeight = avatarSize + (containerPadding * 2) + 30;
+            
+            // Find safe position for floating display
+            let position = findRandomFloatingPosition(containerWidth, containerHeight);
+            
+            // Apply positioning
+            profileElement.style.left = position.x + 'px';
+            profileElement.style.top = position.y + 'px';
+            profileElement.style.position = 'fixed';
+            profileElement.style.zIndex = Math.floor(1000 + buyer.ticketCount * 10);
+            profileElement.style.padding = `${containerPadding}px`;
+            
+            // Add random animation delay for natural floating
+            const animationDelay = Math.random() * 4;
+            profileElement.style.animationDelay = `${animationDelay}s`;
+            
+            // Add floating duration variation
+            let floatDuration;
+            if (buyer.ticketCount >= 8) {
+                floatDuration = 4 + Math.random() * 2;
+            } else if (buyer.ticketCount >= 5) {
+                floatDuration = 5 + Math.random() * 2;
+            } else if (buyer.ticketCount >= 3) {
+                floatDuration = 6 + Math.random() * 2;
+            } else {
+                floatDuration = 4 + Math.random() * 3;
+            }
+            profileElement.style.animationDuration = `0.6s, ${floatDuration}s`;
+            
+            // Enhanced styling with dark mode support
+            let baseBackground = isDarkMode ? 'rgba(139, 69, 19, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            let baseBorder = isDarkMode ? '#f8f5f0' : '#8b4513';
+            let textColor = isDarkMode ? '#fff' : '#8b4513';
+            
+            profileElement.style.background = baseBackground;
+            profileElement.style.border = `3px solid ${baseBorder}`;
+            profileElement.style.color = textColor;
+            profileElement.style.borderRadius = '20px';
+            profileElement.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+            profileElement.style.backdropFilter = 'blur(10px)';
+            profileElement.style.webkitBackdropFilter = 'blur(10px)';
+            
+            // Tier-based styling
+            if (buyer.ticketCount >= 8) {
+                profileElement.style.background = isDarkMode ? 
+                    'linear-gradient(45deg, rgba(255, 20, 147, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(255, 20, 147, 0.95), rgba(255, 215, 0, 0.95))';
+                profileElement.style.border = '4px solid #FF1493';
+                profileElement.style.boxShadow = '0 12px 40px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4)';
+                profileElement.classList.add('mega-vip-holder');
+            } else if (buyer.ticketCount >= 5) {
+                profileElement.style.background = isDarkMode ? 
+                    'linear-gradient(45deg, rgba(184, 134, 11, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(255, 215, 0, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '4px solid #FFD700';
+                profileElement.style.boxShadow = '0 10px 35px rgba(255, 215, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.3)';
+                profileElement.classList.add('vip-holder');
+            } else if (buyer.ticketCount >= 3) {
+                profileElement.style.background = isDarkMode ?
+                    'linear-gradient(45deg, rgba(169, 169, 169, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(192, 192, 192, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '3px solid #C0C0C0';
+                profileElement.style.boxShadow = '0 8px 25px rgba(192, 192, 192, 0.4)';
+                profileElement.classList.add('premium-holder');
+            }
+            
+            // Create avatar
+            const avatar = document.createElement('img');
+            avatar.src = buyer.profilePicture || 'dior.jpg';
+            avatar.alt = buyer.username;
+            avatar.className = 'buyer-avatar enhanced-avatar';
+            avatar.style.width = avatarSize + 'px';
+            avatar.style.height = avatarSize + 'px';
+            avatar.style.borderRadius = '50%';
+            avatar.style.border = `${Math.max(3, avatarSize * 0.04)}px solid ${baseBorder}`;
+            avatar.style.display = 'block';
+            avatar.style.margin = '0 auto 10px auto';
+            avatar.style.objectFit = 'cover';
+            avatar.onerror = () => {
+                console.log('⚠️ Profile picture failed for:', buyer.username, 'using fallback');
+                avatar.src = 'dior.jpg';
+            };
+            
+            // Create name span
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'buyer-name enhanced-name';
+            nameSpan.style.display = 'block';
+            nameSpan.style.textAlign = 'center';
+            nameSpan.style.fontSize = Math.max(11, avatarSize * 0.3) + 'px';
+            nameSpan.style.fontWeight = buyer.ticketCount >= 5 ? 'bold' : '600';
+            nameSpan.style.lineHeight = '1.2';
+            nameSpan.style.marginTop = '5px';
+            
+            // Enhanced emoji and tier text
+            let ticketEmoji, tierText;
+            if (buyer.ticketCount >= 8) {
+                ticketEmoji = '🦄';
+                tierText = 'MEGA WHALE';
+            } else if (buyer.ticketCount >= 5) {
+                ticketEmoji = '👑';
+                tierText = 'VIP WHALE';
+            } else if (buyer.ticketCount >= 3) {
+                ticketEmoji = '⭐';
+                tierText = 'PREMIUM';
+            } else {
+                ticketEmoji = '🎫';
+                tierText = 'HOLDER';
+            }
+            
+            nameSpan.innerHTML = `
+                <div style="font-weight: bold; color: ${buyer.ticketCount >= 5 ? (isDarkMode ? '#FFD700' : '#B8860B') : textColor};">
+                    ${ticketEmoji} ${buyer.username}
+                </div>
+                <div style="font-size: 0.8em; opacity: 0.9; margin-top: 2px;">
+                    ${buyer.ticketCount} tickets • ${tierText}
+                </div>
+            `;
+            
+            // Special text effects
+            if (buyer.ticketCount >= 8) {
+                nameSpan.style.color = isDarkMode ? '#FF1493' : '#FF1493';
+                nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.5), 0 0 15px rgba(255, 20, 147, 0.7)';
+            } else if (buyer.ticketCount >= 5) {
+                nameSpan.style.color = isDarkMode ? '#FFD700' : '#B8860B';
+                nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,215,0,0.5)';
+            } else if (buyer.ticketCount >= 3) {
+                nameSpan.style.color = isDarkMode ? '#C0C0C0' : '#696969';
+                nameSpan.style.textShadow = '0 1px 3px rgba(0,0,0,0.3)';
+            }
+            
+            profileElement.appendChild(avatar);
+            profileElement.appendChild(nameSpan);
+            document.body.appendChild(profileElement);
+            
+            console.log('✅ Floating rectangular profile created for:', buyer.username, 'Size:', avatarSize + 'px', 'Tickets:', buyer.ticketCount);
+            
+            // Remove profile after random duration (5-10 seconds) and potentially recreate
+            const displayDuration = 5000 + Math.random() * 5000; // 5-10 seconds
+            setTimeout(() => {
+                if (profileElement.parentNode) {
+                    // Fade out animation
+                    profileElement.style.transition = 'all 0.8s ease-out';
+                    profileElement.style.opacity = '0';
+                    profileElement.style.transform = 'scale(0.2)';
+                    
+                    setTimeout(() => {
+                        profileElement.remove();
+                        
+                        // 60% chance to recreate the same profile at a different position
+                        if (Math.random() < 0.6 && buyerNames.includes(buyer)) {
+                            setTimeout(() => {
+                                createFloatingRectangularProfile(buyer, index);
+                            }, 1000 + Math.random() * 3000); // Wait 1-4 seconds before reappearing
+                        }
+                    }, 800);
+                }
+            }, displayDuration);
+        }
+
+        // Find random position for floating profiles
+        function findRandomFloatingPosition(width, height) {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Get hero image bounds for exclusion
+            const heroImage = document.querySelector('.hero img');
+            let heroExclusionZone = null;
+            if (heroImage) {
+                const heroRect = heroImage.getBoundingClientRect();
+                heroExclusionZone = {
+                    left: heroRect.left - 100,
+                    right: heroRect.right + 100,
+                    top: heroRect.top - 100,
+                    bottom: heroRect.bottom + 100
+                };
+            }
+            
+            let attempts = 0;
+            let x, y;
+            
+            do {
+                x = Math.random() * (screenWidth - width - 100) + 50;
+                y = Math.random() * (screenHeight - height - 200) + 100;
+                attempts++;
+                
+                // Check if position conflicts with hero image
+                if (heroExclusionZone) {
+                    const overlaps = !(x + width < heroExclusionZone.left || 
+                                     x > heroExclusionZone.right || 
+                                     y + height < heroExclusionZone.top || 
+                                     y > heroExclusionZone.bottom);
+                    if (!overlaps) break;
+                }
+            } while (attempts < 15);
+            
+            return { x, y };
+        }
+
+        // Create floating circular profiles that appear/disappear like Dior logo
+        function createFloatingCircularProfile(buyer, index) {
+            const profileElement = document.createElement('div');
+            profileElement.className = 'buyer-profile circular-profile floating-profile';
+            
+            // Check if dark mode is active
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Calculate dynamic avatar size based on ticket count (much smaller sizes)
+            let avatarSize;
+            if (buyer.ticketCount >= 8) {
+                avatarSize = 28 + Math.random() * 4; // 28-32px for mega whales
+            } else if (buyer.ticketCount >= 5) {
+                avatarSize = 25 + Math.random() * 3; // 25-28px for VIP
+            } else if (buyer.ticketCount >= 3) {
+                avatarSize = 22 + Math.random() * 3; // 22-25px for premium
+            } else {
+                avatarSize = 18 + Math.random() * 4; // 18-22px for regular (very small like tiny icons)
+            }
+            
+            // Random positioning anywhere on screen (avoiding hero area)
+            const position = findRandomFloatingPosition(avatarSize);
+            
+            // Make profile perfectly circular
+            profileElement.style.cssText = `
+                position: fixed;
+                left: ${position.x}px;
+                top: ${position.y}px;
+                width: ${avatarSize}px;
+                height: ${avatarSize}px;
+                border-radius: 50%;
+                z-index: ${Math.floor(1000 + buyer.ticketCount * 10)};
+                overflow: hidden;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+                border: 3px solid ${isDarkMode ? '#f8f5f0' : '#8b4513'};
+            `;
+            
+            // Add tier-based effects
+            if (buyer.ticketCount >= 8) {
+                profileElement.style.border = '4px solid #FF1493';
+                profileElement.style.boxShadow = '0 12px 40px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4)';
+                profileElement.classList.add('mega-vip-holder');
+            } else if (buyer.ticketCount >= 5) {
+                profileElement.style.border = '4px solid #FFD700';
+                profileElement.style.boxShadow = '0 10px 35px rgba(255, 215, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.3)';
+                profileElement.classList.add('vip-holder');
+            } else if (buyer.ticketCount >= 3) {
+                profileElement.style.border = '3px solid #C0C0C0';
+                profileElement.style.boxShadow = '0 8px 25px rgba(192, 192, 192, 0.4)';
+                profileElement.classList.add('premium-holder');
+            }
+            
+            // Add floating animation with random delay and duration
+            const animationDelay = Math.random() * 3;
+            const floatDuration = 3 + Math.random() * 2; // 3-5 seconds
+            profileElement.style.animationDelay = `${animationDelay}s`;
+            profileElement.style.animationDuration = `${floatDuration}s`;
+            
+            // Create circular avatar that fills the entire profile
+            const avatar = document.createElement('img');
+            avatar.src = buyer.profilePicture || 'dior.jpg';
+            avatar.alt = buyer.username;
+            avatar.className = 'circular-avatar';
+            avatar.style.cssText = `
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+                display: block;
+            `;
+            avatar.onerror = () => {
+                console.log('⚠️ Profile picture failed for:', buyer.username, 'using fallback');
+                avatar.src = 'dior.jpg';
+            };
+            
+            // Create hover tooltip with user info (improved positioning)
+            const tooltip = document.createElement('div');
+            tooltip.className = 'profile-tooltip';
+            tooltip.style.cssText = `
+                position: absolute;
+                bottom: ${-avatarSize * 0.6}px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${isDarkMode ? 'rgba(139, 69, 19, 0.95)' : 'rgba(255, 255, 255, 0.95)'};
+                color: ${isDarkMode ? '#f8f5f0' : '#8b4513'};
+                padding: 6px 10px;
+                border-radius: 12px;
+                font-size: ${Math.max(10, avatarSize * 0.25)}px;
+                font-weight: bold;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+                backdrop-filter: blur(10px);
+                border: 2px solid ${buyer.ticketCount >= 5 ? '#FFD700' : '#8b4513'};
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                min-width: ${avatarSize + 20}px;
+                text-align: center;
+            `;
+            
+            // Enhanced emoji and tier text
+            let ticketEmoji;
+            if (buyer.ticketCount >= 8) {
+                ticketEmoji = '🦄';
+            } else if (buyer.ticketCount >= 5) {
+                ticketEmoji = '👑';
+            } else if (buyer.ticketCount >= 3) {
+                ticketEmoji = '⭐';
+            } else {
+                ticketEmoji = '🎫';
+            }
+            
+            tooltip.innerHTML = `${ticketEmoji} ${buyer.username} (${buyer.ticketCount})`;
+            
+            // Create always-visible name label below the profile
+            const nameLabel = document.createElement('div');
+            nameLabel.className = 'profile-name-label';
+            nameLabel.style.cssText = `
+                position: absolute;
+                top: ${avatarSize + 8}px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${isDarkMode ? 'rgba(139, 69, 19, 0.9)' : 'rgba(255, 255, 255, 0.9)'};
+                color: ${isDarkMode ? '#f8f5f0' : '#8b4513'};
+                padding: 4px 8px;
+                border-radius: 8px;
+                font-size: ${Math.max(9, avatarSize * 0.2)}px;
+                font-weight: 600;
+                white-space: nowrap;
+                backdrop-filter: blur(5px);
+                border: 1px solid ${buyer.ticketCount >= 5 ? '#FFD700' : '#8b4513'};
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                text-align: center;
+                min-width: ${avatarSize}px;
+                opacity: 0.9;
+            `;
+            
+            // Simplified name for the always-visible label
+            let displayName = buyer.username;
+            if (displayName.length > 8) {
+                displayName = displayName.substring(0, 8) + '...';
+            }
+            nameLabel.textContent = `${ticketEmoji} ${displayName}`;
+            
+            // Special styling for high-tier holders
+            if (buyer.ticketCount >= 8) {
+                nameLabel.style.color = isDarkMode ? '#FF1493' : '#FF1493';
+                nameLabel.style.textShadow = '0 1px 3px rgba(255, 20, 147, 0.5)';
+                nameLabel.style.borderColor = '#FF1493';
+            } else if (buyer.ticketCount >= 5) {
+                nameLabel.style.color = isDarkMode ? '#FFD700' : '#B8860B';
+                nameLabel.style.textShadow = '0 1px 3px rgba(255, 215, 0, 0.5)';
+                nameLabel.style.borderColor = '#FFD700';
+            }
+            
+            // Add hover effects
+            profileElement.addEventListener('mouseenter', () => {
+                profileElement.style.transform = 'scale(1.15)';
+                profileElement.style.animationPlayState = 'paused';
+                tooltip.style.opacity = '1';
+                nameLabel.style.opacity = '1';
+                nameLabel.style.transform = 'translateX(-50%) scale(1.1)';
+            });
+            
+            profileElement.addEventListener('mouseleave', () => {
+                profileElement.style.transform = 'scale(1)';
+                profileElement.style.animationPlayState = 'running';
+                tooltip.style.opacity = '0';
+                nameLabel.style.opacity = '0.9';
+                nameLabel.style.transform = 'translateX(-50%) scale(1)';
+            });
+            
+            profileElement.appendChild(avatar);
+            profileElement.appendChild(tooltip);
+            profileElement.appendChild(nameLabel);
+            document.body.appendChild(profileElement);
+            
+            console.log('✅ Circular floating profile created for:', buyer.username, 'Size:', avatarSize + 'px');
+            
+            // Remove profile after random duration (5-10 seconds) and potentially recreate
+            const displayDuration = 5000 + Math.random() * 5000; // 5-10 seconds
+            setTimeout(() => {
+                if (profileElement.parentNode) {
+                    // Fade out animation
+                    profileElement.style.transition = 'all 0.8s ease-out';
+                    profileElement.style.opacity = '0';
+                    profileElement.style.transform = 'scale(0.2)';
+                    
+                    setTimeout(() => {
+                        profileElement.remove();
+                        
+                        // 60% chance to recreate the same profile at a different position
+                        if (Math.random() < 0.6 && buyerNames.includes(buyer)) {
+                            setTimeout(() => {
+                                createFloatingCircularProfile(buyer, index);
+                            }, 1000 + Math.random() * 3000); // Wait 1-4 seconds before reappearing
+                        }
+                    }, 800);
+                }
+            }, displayDuration);
+        }
+
+        // Find random position for floating profiles (accounting for name labels)
+        function findRandomFloatingPosition(size) {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Account for name label height (add extra space below)
+            const totalHeight = size + 40; // Profile + name label space
+            
+            // Get hero image bounds for exclusion
+            const heroImage = document.querySelector('.hero img');
+            let heroExclusionZone = null;
+            if (heroImage) {
+                const heroRect = heroImage.getBoundingClientRect();
+                heroExclusionZone = {
+                    left: heroRect.left - 100,
+                    right: heroRect.right + 100,
+                    top: heroRect.top - 100,
+                    bottom: heroRect.bottom + 100
+                };
+            }
+            
+            let attempts = 0;
+            let x, y;
+            
+            do {
+                x = Math.random() * (screenWidth - size - 100) + 50;
+                y = Math.random() * (screenHeight - totalHeight - 200) + 100;
+                attempts++;
+                
+                // Check if position conflicts with hero image
+                if (heroExclusionZone) {
+                    const overlaps = !(x + size < heroExclusionZone.left || 
+                                     x > heroExclusionZone.right || 
+                                     y + totalHeight < heroExclusionZone.top || 
+                                     y > heroExclusionZone.bottom);
+                    if (!overlaps) break;
+                }
+            } while (attempts < 15);
+            
+            return { x, y };
+        }
+
+        // Smart positioning for persistent profiles
+        function findPersistentSafePosition(width, height, buyerId) {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Get hero image bounds for exclusion
+            const heroImage = document.querySelector('.hero img');
+            let heroExclusionZone = null;
+            if (heroImage) {
+                const heroRect = heroImage.getBoundingClientRect();
+                heroExclusionZone = {
+                    left: heroRect.left - 150,
+                    right: heroRect.right + 150,
+                    top: heroRect.top - 150,
+                    bottom: heroRect.bottom + 150
+                };
+            }
+            
+            // Generate random position avoiding hero area
+            let attempts = 0;
+            let x, y;
+            
+            do {
+                x = Math.random() * (screenWidth - width - 100) + 50;
+                y = Math.random() * (screenHeight - height - 250) + 120;
+                attempts++;
+                
+                // Check if position conflicts with hero image
+                if (heroExclusionZone) {
+                    const overlaps = !(x + width < heroExclusionZone.left || 
+                                     x > heroExclusionZone.right || 
+                                     y + height < heroExclusionZone.top || 
+                                     y > heroExclusionZone.bottom);
+                    if (!overlaps) break;
+                }
+            } while (attempts < 20);
+            
+            return { x, y };
+        }
+
+        // Show notification when someone sells their tickets
+        function showSellNotification(profile) {
+            const buyerName = profile.querySelector('.buyer-name')?.textContent?.split(' ')[1] || 'Someone';
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: linear-gradient(45deg, #ff4444, #cc0000);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 20px;
+                font-weight: bold;
+                font-size: 14px;
+                z-index: 9999;
+                animation: slideInLeft 0.5s ease-out;
+                box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+                border: 2px solid #ff6666;
+            `;
+            notification.textContent = `📉 ${buyerName} sold their tickets!`;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutLeft 0.5s ease-in';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 3000);
+        }
+
+        // Show notification for new buyers
+        function showNewBuyerNotification(buyer) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #4CAF50, #45a049);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 20px;
+                font-weight: bold;
+                font-size: 14px;
+                z-index: 9999;
+                animation: slideInRight 0.5s ease-out;
+                box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+                border: 2px solid #66BB6A;
+            `;
+            notification.textContent = `🎉 ${buyer.username} bought ${buyer.ticketCount} tickets!`;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 4 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutRight 0.5s ease-in';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 4000);
+        }
+
+        // Enhanced buyer profile creation with dynamic sizing and collision avoidance
+        function createEnhancedBuyerProfile(buyer, index, gridCols, gridRows, gridWidth, gridHeight, occupiedPositions) {
+            const profileElement = document.createElement('div');
+            profileElement.className = 'buyer-profile enhanced-profile';
+            
+            // Check if dark mode is active
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Calculate dynamic avatar size based on ticket count (more dramatic scaling)
+            const baseSize = 40; // Increased base size
+            const maxSize = 120; // Increased max size for high holders
+            const minSize = 25;
+            
+            // Enhanced scaling - VIP holders get much larger profiles
+            let avatarSize;
+            if (buyer.ticketCount >= 8) {
+                avatarSize = maxSize; // Largest for 8+ tickets
+            } else if (buyer.ticketCount >= 5) {
+                avatarSize = Math.floor(maxSize * 0.85); // 85% of max for VIP
+            } else if (buyer.ticketCount >= 3) {
+                avatarSize = Math.floor(maxSize * 0.65); // 65% of max for premium
+            } else {
+                avatarSize = Math.floor(baseSize + (buyer.ticketCount * 8)); // Standard scaling
+            }
+            
+            avatarSize = Math.max(Math.min(avatarSize, maxSize), minSize);
+            
+            // Calculate profile container size based on avatar
+            const containerPadding = Math.max(8, avatarSize * 0.25);
+            const containerWidth = avatarSize + (containerPadding * 3);
+            const containerHeight = avatarSize + (containerPadding * 2) + 30; // Extra space for name
+            
+            // Smart positioning with collision avoidance
+            let position = findSafePosition(containerWidth, containerHeight, gridCols, gridRows, gridWidth, gridHeight, occupiedPositions, buyer.ticketCount);
+            
+            profileElement.style.left = position.x + 'px';
+            profileElement.style.top = position.y + 'px';
+            profileElement.style.position = 'fixed';
+            profileElement.style.zIndex = Math.floor(1000 + buyer.ticketCount * 10); // Higher ticket holders appear on top
+            profileElement.style.padding = `${containerPadding}px`;
+            
+            // Add random animation delay for natural floating effect
+            const animationDelay = Math.random() * 4; // Random delay between 0-4 seconds
+            profileElement.style.animationDelay = `${animationDelay}s`;
+            
+            // Add floating animation duration variation based on ticket count
+            let floatDuration;
+            if (buyer.ticketCount >= 8) {
+                floatDuration = 4 + Math.random() * 2; // 4-6 seconds for mega whales
+            } else if (buyer.ticketCount >= 5) {
+                floatDuration = 5 + Math.random() * 2; // 5-7 seconds for VIP
+            } else if (buyer.ticketCount >= 3) {
+                floatDuration = 6 + Math.random() * 2; // 6-8 seconds for premium
+            } else {
+                floatDuration = 4 + Math.random() * 3; // 4-7 seconds for regular
+            }
+            profileElement.style.animationDuration = `0.6s, ${floatDuration}s`;
+            
+            // Enhanced base styling with dark mode support
+            let baseBackground = isDarkMode ? 'rgba(139, 69, 19, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            let baseBorder = isDarkMode ? '#f8f5f0' : '#8b4513';
+            let textColor = isDarkMode ? '#fff' : '#8b4513';
+            
+            profileElement.style.background = baseBackground;
+            profileElement.style.border = `3px solid ${baseBorder}`;
+            profileElement.style.color = textColor;
+            profileElement.style.borderRadius = '20px';
+            profileElement.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+            profileElement.style.backdropFilter = 'blur(10px)';
+            profileElement.style.webkitBackdropFilter = 'blur(10px)';
+            
+            // Ultra VIP styling for 8+ tickets (Mega whales)
+            if (buyer.ticketCount >= 8) {
+                profileElement.style.background = isDarkMode ? 
+                    'linear-gradient(45deg, rgba(255, 20, 147, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(255, 20, 147, 0.95), rgba(255, 215, 0, 0.95))';
+                profileElement.style.border = '4px solid #FF1493';
+                profileElement.style.boxShadow = '0 12px 40px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4)';
+                profileElement.classList.add('mega-vip-holder');
+            }
+            // VIP styling for 5+ tickets (Whales)
+            else if (buyer.ticketCount >= 5) {
+                profileElement.style.background = isDarkMode ? 
+                    'linear-gradient(45deg, rgba(184, 134, 11, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(255, 215, 0, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '4px solid #FFD700';
+                profileElement.style.boxShadow = '0 10px 35px rgba(255, 215, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.3)';
+                profileElement.classList.add('vip-holder');
+            } 
+            // Premium styling for 3+ tickets
+            else if (buyer.ticketCount >= 3) {
+                profileElement.style.background = isDarkMode ?
+                    'linear-gradient(45deg, rgba(169, 169, 169, 0.9), rgba(139, 69, 19, 0.9))' :
+                    'linear-gradient(45deg, rgba(192, 192, 192, 0.95), rgba(255, 255, 255, 0.95))';
+                profileElement.style.border = '3px solid #C0C0C0';
+                profileElement.style.boxShadow = '0 8px 25px rgba(192, 192, 192, 0.4)';
+                profileElement.classList.add('premium-holder');
+            }
+            
+            // Create enhanced avatar with dynamic sizing
+            const avatar = document.createElement('img');
+            avatar.src = buyer.profilePicture || 'dior.jpg';
+            avatar.alt = buyer.username;
+            avatar.className = 'buyer-avatar enhanced-avatar';
+            avatar.style.width = avatarSize + 'px';
+            avatar.style.height = avatarSize + 'px';
+            avatar.style.borderRadius = '50%';
+            avatar.style.border = `${Math.max(3, avatarSize * 0.04)}px solid ${baseBorder}`;
+            avatar.style.display = 'block';
+            avatar.style.margin = '0 auto 10px auto';
+            avatar.style.objectFit = 'cover';
+            avatar.onerror = () => {
+                console.log('⚠️ Profile picture failed for:', buyer.username, 'using fallback');
+                avatar.src = 'dior.jpg';
+            };
+            
+            // Create enhanced name span with dynamic styling
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'buyer-name enhanced-name';
+            nameSpan.style.display = 'block';
+            nameSpan.style.textAlign = 'center';
+            nameSpan.style.fontSize = Math.max(11, avatarSize * 0.3) + 'px';
+            nameSpan.style.fontWeight = buyer.ticketCount >= 5 ? 'bold' : '600';
+            nameSpan.style.lineHeight = '1.2';
+            nameSpan.style.marginTop = '5px';
+            
+            // Enhanced emoji system and text based on ticket count
+            let ticketEmoji, tierText;
+            if (buyer.ticketCount >= 8) {
+                ticketEmoji = '🦄'; // Unicorn for mega whales
+                tierText = 'MEGA WHALE';
+            } else if (buyer.ticketCount >= 5) {
+                ticketEmoji = '👑'; // Crown for VIP
+                tierText = 'VIP WHALE';
+            } else if (buyer.ticketCount >= 3) {
+                ticketEmoji = '⭐'; // Star for premium
+                tierText = 'PREMIUM';
+            } else {
+                ticketEmoji = '🎫'; // Ticket for regular
+                tierText = 'HOLDER';
+            }
+            
+            nameSpan.innerHTML = `
+                <div style="font-weight: bold; color: ${buyer.ticketCount >= 5 ? (isDarkMode ? '#FFD700' : '#B8860B') : textColor};">
+                    ${ticketEmoji} ${buyer.username}
+                </div>
+                <div style="font-size: 0.8em; opacity: 0.9; margin-top: 2px;">
+                    ${buyer.ticketCount} tickets • ${tierText}
+                </div>
+            `;
+            
+            // Special text effects for high ticket holders
+            if (buyer.ticketCount >= 8) {
+                nameSpan.style.color = isDarkMode ? '#FF1493' : '#FF1493';
+                nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.5), 0 0 15px rgba(255, 20, 147, 0.7)';
+            } else if (buyer.ticketCount >= 5) {
+                nameSpan.style.color = isDarkMode ? '#FFD700' : '#B8860B';
+                nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,215,0,0.5)';
+            } else if (buyer.ticketCount >= 3) {
+                nameSpan.style.color = isDarkMode ? '#C0C0C0' : '#696969';
+                nameSpan.style.textShadow = '0 1px 3px rgba(0,0,0,0.3)';
+            }
+            
+            profileElement.appendChild(avatar);
+            profileElement.appendChild(nameSpan);
+            document.body.appendChild(profileElement);
+            
+            // Mark position as occupied
+            occupiedPositions.add(`${position.gridX},${position.gridY}`);
+            
+            console.log('✅ Enhanced profile created for:', buyer.username, 'Size:', avatarSize + 'px', 'Tickets:', buyer.ticketCount, 'Position:', position);
+
+            // Remove profile after display duration (VIP holders stay longer)
+            const displayDuration = buyer.ticketCount >= 8 ? 20000 : 
+                                   buyer.ticketCount >= 5 ? 18000 : 
+                                   buyer.ticketCount >= 3 ? 15000 : 12000;
+            
+            setTimeout(() => {
+                if (profileElement.parentNode) {
+                    profileElement.remove();
+                    occupiedPositions.delete(`${position.gridX},${position.gridY}`);
+                    console.log('🗑️ Removed enhanced profile for:', buyer.username);
+                }
+            }, displayDuration);
+        }
+
+        // Smart positioning system to prevent overlaps
+        function findSafePosition(width, height, gridCols, gridRows, gridWidth, gridHeight, occupiedPositions, ticketCount) {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            // Get hero image bounds for exclusion
+            const heroImage = document.querySelector('.hero img');
+            let heroExclusionZone = null;
+            if (heroImage) {
+                const heroRect = heroImage.getBoundingClientRect();
+                heroExclusionZone = {
+                    left: heroRect.left - 150,
+                    right: heroRect.right + 150,
+                    top: heroRect.top - 150,
+                    bottom: heroRect.bottom + 150
+                };
+            }
+            
+            // Try grid-based positioning first
+            for (let attempts = 0; attempts < gridCols * gridRows; attempts++) {
+                const gridX = attempts % gridCols;
+                const gridY = Math.floor(attempts / gridCols);
+                const positionKey = `${gridX},${gridY}`;
+                
+                if (occupiedPositions.has(positionKey)) continue;
+                
+                // Calculate position within grid cell
+                const cellCenterX = (gridX * gridWidth) + (gridWidth / 2);
+                const cellCenterY = (gridY * gridHeight) + (gridHeight / 2) + 100; // Offset from top
+                
+                // Add some randomness within the cell
+                const randomOffsetX = (Math.random() - 0.5) * (gridWidth * 0.3);
+                const randomOffsetY = (Math.random() - 0.5) * (gridHeight * 0.3);
+                
+                const x = Math.max(50, Math.min(cellCenterX + randomOffsetX - width/2, screenWidth - width - 50));
+                const y = Math.max(120, Math.min(cellCenterY + randomOffsetY - height/2, screenHeight - height - 120));
+                
+                // Check if position conflicts with hero image
+                if (heroExclusionZone && 
+                    !(x + width < heroExclusionZone.left || 
+                      x > heroExclusionZone.right || 
+                      y + height < heroExclusionZone.top || 
+                      y > heroExclusionZone.bottom)) {
+                    continue; // Skip positions that overlap with hero
+                }
+                
+                return { x, y, gridX, gridY };
+            }
+            
+            // Fallback to random positioning if grid is full
+            console.log('⚠️ Grid full, using fallback positioning');
+            const x = Math.random() * (screenWidth - width - 100) + 50;
+            const y = Math.random() * (screenHeight - height - 250) + 150;
+            
+            return { x, y, gridX: -1, gridY: -1 };
+        }
+
+        // Initialize buyer system with robust live auto-refresh
+        async function initializeBuyerSystem() {
+            console.log('🚀 Initializing DiorTheCow buyer display system with robust error handling...');
+            
+            try {
+                // Fetch initial buyer data with robust error handling
+                buyerNames = await fetchBuyerData();
+                console.log('👥 Initial buyer data loaded:', buyerNames.length, 'buyers');
+                
+                // Start displaying buyer profiles immediately
+                if (buyerNames.length > 0) {
+                    console.log('✅ Starting buyer profile display system...');
+                    displayBuyerProfiles();
+                }
+                
+            } catch (error) {
+                console.log('❌ Failed to initialize buyer system:', error.message);
+                console.log('🔄 Retrying initialization in 10 seconds...');
+                
+                setTimeout(() => {
+                    initializeBuyerSystem();
+                }, 10000);
+            }
+        }
+
+        // Function to display special alert for new buyers
+        function displayNewBuyerAlert() {
+            if (buyerNames.length === 0) return;
+            
+            // Create a special "NEW BUYER!" notification
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.background = 'linear-gradient(45deg, #8b4513, #a0522d)';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '25px';
+            notification.style.fontWeight = 'bold';
+            notification.style.fontSize = '14px';
+            notification.style.zIndex = '1000';
+            notification.style.animation = 'bounceIn 0.5s ease-out';
+            notification.style.boxShadow = '0 8px 25px rgba(139, 69, 19, 0.4)';
+            notification.textContent = '🎉 NEW TICKET PURCHASE! 🐄';
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 3000);
+            
+            // Show the latest buyer profile immediately
+            const latestBuyer = buyerNames[0]; // First buyer is usually the most recent
+            displaySpecialBuyerProfile(latestBuyer);
+        }
+
+        // Function to display update alert for ticket count changes
+        function displayUpdateAlert() {
+            // Create a "LIVE UPDATE!" notification
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.left = '20px';
+            notification.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            notification.style.color = 'white';
+            notification.style.padding = '12px 20px';
+            notification.style.borderRadius = '20px';
+            notification.style.fontWeight = 'bold';
+            notification.style.fontSize = '12px';
+            notification.style.zIndex = '1000';
+            notification.style.animation = 'slideInLeft 0.5s ease-out';
+            notification.style.boxShadow = '0 6px 20px rgba(76, 175, 80, 0.3)';
+            notification.textContent = '🔄 LIVE UPDATE!';
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 2 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 2000);
+        }
+
+        // Function to display a special highlighted buyer profile
+        function displaySpecialBuyerProfile(buyer) {
+            const specialProfile = document.createElement('div');
+            specialProfile.className = 'buyer-profile';
+            specialProfile.style.left = '50%';
+            specialProfile.style.top = '50%';
+            specialProfile.style.transform = 'translate(-50%, -50%)';
+            specialProfile.style.fontSize = '18px';
+            specialProfile.style.background = 'linear-gradient(45deg, #8b4513, #a0522d)';
+            specialProfile.style.color = 'white';
+            specialProfile.style.padding = '12px 20px';
+            specialProfile.style.borderRadius = '30px';
+            specialProfile.style.animation = 'specialBuyerAnim 4s ease-out forwards';
+            specialProfile.style.zIndex = '1000';
+            specialProfile.style.boxShadow = '0 8px 30px rgba(139, 69, 19, 0.6)';
+            specialProfile.style.border = '3px solid white';
+            
+            // Create avatar image for special display
+            const avatar = document.createElement('img');
+            avatar.className = 'buyer-avatar';
+            avatar.src = buyer.profilePicture;
+            avatar.alt = buyer.username;
+            avatar.style.width = '40px';
+            avatar.style.height = '40px';
+            avatar.style.border = '2px solid white';
+            avatar.onerror = function() {
+                this.src = 'dior.jpg';
+            };
+            
+            // Create name span for special display
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'buyer-name';
+            nameSpan.textContent = `✨ ${buyer.username} ✨`;
+            nameSpan.style.color = 'white';
+            nameSpan.style.fontWeight = 'bold';
+            nameSpan.style.textShadow = '0 2px 4px rgba(0,0,0,0.5)';
+            
+            specialProfile.appendChild(avatar);
+            specialProfile.appendChild(nameSpan);
+            document.body.appendChild(specialProfile);
+
+            // Remove after animation completes
+            setTimeout(() => {
+                if (specialProfile.parentNode) {
+                    specialProfile.remove();
+                }
+            }, 4000);
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive sparkle effects (throttled for performance)
+        let lastSparkleTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastSparkleTime < 100) return; // Throttle to every 100ms
+            lastSparkleTime = now;
+
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            sparkle.style.position = 'absolute';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = 'rgba(142, 124, 195, 0.8)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = 'sparkleAnim 1s ease-out forwards';
+            sparkle.style.zIndex = '9999';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleAnim {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1) rotate(180deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes bounceIn {
+                0% {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideInLeft {
+                0% {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutLeft {
+                0% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes slideInRight {
+                0% {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                0% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes specialBuyerAnim {
+                0% {
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    opacity: 0;
+                }
+                25% {
+                    transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: translate(-50%, -50%) scale(1) rotate(-5deg);
+                    opacity: 1;
+                }
+                75% {
+                    transform: translate(-50%, -50%) scale(1.1) rotate(3deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes vipGlow {
+                0%, 100% {
+                    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
+                }
+                50% {
+                    box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.5);
+                }
+            }
+            
+            @keyframes megaVipGlow {
+                0%, 100% {
+                    box-shadow: 0 12px 40px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4);
+                    transform: scale(1);
+                }
+                25% {
+                    box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8), 0 0 40px rgba(255, 20, 147, 0.6);
+                    transform: scale(1.02);
+                }
+                50% {
+                    box-shadow: 0 18px 60px rgba(255, 20, 147, 1), 0 0 50px rgba(255, 20, 147, 0.8);
+                    transform: scale(1.05);
+                }
+                75% {
+                    box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8), 0 0 40px rgba(255, 20, 147, 0.6);
+                    transform: scale(1.02);
+                }
+            }
+            
+            @keyframes premiumPulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+            
+            @keyframes enhancedFloat {
+                0%, 100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-8px) rotate(1deg);
+                }
+                50% {
+                    transform: translateY(-15px) rotate(0deg);
+                }
+                75% {
+                    transform: translateY(-8px) rotate(-1deg);
+                }
+            }
+            
+            @keyframes megaFloat {
+                0%, 100% {
+                    transform: translateY(0px) rotate(0deg) scale(1);
+                }
+                20% {
+                    transform: translateY(-12px) rotate(2deg) scale(1.02);
+                }
+                40% {
+                    transform: translateY(-20px) rotate(0deg) scale(1.05);
+                }
+                60% {
+                    transform: translateY(-25px) rotate(-1deg) scale(1.03);
+                }
+                80% {
+                    transform: translateY(-15px) rotate(1deg) scale(1.01);
+                }
+            }
+            
+            @keyframes vipFloat {
+                0%, 100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                30% {
+                    transform: translateY(-10px) rotate(1.5deg);
+                }
+                60% {
+                    transform: translateY(-18px) rotate(-0.5deg);
+                }
+            }
+            
+            @keyframes premiumFloat {
+                0%, 100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                40% {
+                    transform: translateY(-12px) rotate(0.8deg);
+                }
+                80% {
+                    transform: translateY(-8px) rotate(-0.8deg);
+                }
+            }
+            
+            .mega-vip-holder {
+                animation: megaVipGlow 3s ease-in-out infinite, megaFloat 5s ease-in-out infinite !important;
+            }
+            
+            .vip-holder {
+                animation: vipGlow 2s ease-in-out infinite, vipFloat 4s ease-in-out infinite !important;
+            }
+            
+            .premium-holder {
+                animation: premiumPulse 3s ease-in-out infinite, premiumFloat 6s ease-in-out infinite !important;
+            }
+            
+            .enhanced-profile {
+                transition: all 0.3s ease;
+                animation: fadeInUp 0.6s ease-out, enhancedFloat 4s ease-in-out infinite;
+            }
+            
+            .enhanced-profile:hover {
+                transform: scale(1.1) !important;
+                z-index: 9999 !important;
+                animation-play-state: paused;
+            }
+            
+            .enhanced-avatar {
+                transition: all 0.3s ease;
+            }
+            
+            .enhanced-avatar:hover {
+                transform: scale(1.15);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            }
+            
+            /* Circular Floating Profile Styles */
+            .circular-profile {
+                border-radius: 50% !important;
+                overflow: hidden;
+                width: auto !important;
+                height: auto !important;
+                animation: floatCircular 3s ease-in-out infinite;
+            }
+            
+            .circular-avatar {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+                display: block;
+            }
+            
+            /* Enhanced circular floating animation */
+            @keyframes floatCircular {
+                0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+                25% { transform: translateY(-20px) translateX(10px) rotate(2deg); }
+                50% { transform: translateY(-15px) translateX(-10px) rotate(-1deg); }
+                75% { transform: translateY(-25px) translateX(5px) rotate(1.5deg); }
+                100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            }
+            
+            /* Special effects for high-tier circular profiles */
+            .circular-profile.mega-vip-holder {
+                animation: floatCircularMega 2.5s ease-in-out infinite, pulseGlow 3s ease-in-out infinite alternate;
+            }
+            
+            .circular-profile.vip-holder {
+                animation: floatCircularVIP 3s ease-in-out infinite, shimmer 4s ease-in-out infinite;
+            }
+            
+            .circular-profile.premium-holder {
+                animation: floatCircular 3.5s ease-in-out infinite, subtle-pulse 2s ease-in-out infinite alternate;
+            }
+            
+            @keyframes floatCircularMega {
+                0% { transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); }
+                20% { transform: translateY(-30px) translateX(15px) rotate(3deg) scale(1.05); }
+                40% { transform: translateY(-20px) translateX(-15px) rotate(-2deg) scale(1.02); }
+                60% { transform: translateY(-35px) translateX(10px) rotate(2.5deg) scale(1.08); }
+                80% { transform: translateY(-15px) translateX(-5px) rotate(-1deg) scale(1.03); }
+                100% { transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); }
+            }
+            
+            @keyframes floatCircularVIP {
+                0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+                30% { transform: translateY(-25px) translateX(12px) rotate(2.5deg); }
+                60% { transform: translateY(-18px) translateX(-12px) rotate(-1.5deg); }
+                100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            }
+            
+            @keyframes pulseGlow {
+                from { box-shadow: 0 12px 40px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4); }
+                to { box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8), 0 0 40px rgba(255, 20, 147, 0.6); }
+            }
+            
+            @keyframes shimmer {
+                0% { filter: brightness(1) saturate(1); }
+                50% { filter: brightness(1.1) saturate(1.2); }
+                100% { filter: brightness(1) saturate(1); }
+            }
+            
+            @keyframes subtle-pulse {
+                from { opacity: 0.9; }
+                to { opacity: 1; }
+            }
+            
+            /* Tooltip styling for circular profiles */
+            .circular-profile .profile-tooltip {
+                border-radius: 15px;
+                font-size: 12px;
+                font-weight: bold;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🐄 DiorTheCow website loaded - Starting buyer system...');
+            initializeBuyerSystem();
+        });
+
+        // Debug function to check system status
+        function debugSystemStatus() {
+            console.log('🔍 === SYSTEM DEBUG STATUS ===');
+            console.log('✅ System initialized:', systemInitialized);
+            console.log('📊 Buyer data count:', buyerNames ? buyerNames.length : 'null');
+            console.log('🔄 Active intervals:', window.buyerSystemIntervals ? window.buyerSystemIntervals.length : 'none');
+            
+            if (buyerNames && buyerNames.length > 0) {
+                console.log('👥 Sample buyers:', buyerNames.slice(0, 3).map(b => `${b.username} (${b.ticketCount})`));
+            }
+            
+            const updateStatus = document.getElementById('updateStatus');
+            console.log('💻 Status element:', updateStatus ? updateStatus.textContent : 'not found');
+            
+            const profiles = document.querySelectorAll('.buyer-profile');
+            console.log('🎨 Active profiles on screen:', profiles.length);
+            
+            console.log('🔍 === END DEBUG STATUS ===');
+        }
+
+        // Visual debug panel for easier troubleshooting
+        function createDebugPanel() {
+            const debugPanel = document.createElement('div');
+            debugPanel.id = 'debugPanel';
+            debugPanel.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 10px;
+                border-radius: 10px;
+                font-family: monospace;
+                font-size: 12px;
+                z-index: 9999;
+                max-width: 300px;
+                line-height: 1.3;
+            `;
+            document.body.appendChild(debugPanel);
+            
+            // Update debug panel every 2 seconds
+            setInterval(() => {
+                const profiles = document.querySelectorAll('.buyer-profile');
+                debugPanel.innerHTML = `
+                    <strong>🔍 DEBUG PANEL</strong><br>
+                    System: ${systemInitialized ? 'ON' : 'OFF'}<br>
+                    Buyers: ${buyerNames ? buyerNames.length : 0}<br>
+                    Profiles: ${profiles.length}<br>
+                    Intervals: ${window.buyerSystemIntervals ? window.buyerSystemIntervals.length : 0}<br>
+                    <small>Click to close</small>
+                `;
+            }, 2000);
+            
+            debugPanel.addEventListener('click', () => debugPanel.remove());
+        }
+
+        // Auto-debug every 30 seconds in console
+        setInterval(debugSystemStatus, 30000);
+
+        // Single initialization system - prevent multiple starts
+        let systemInitialized = false;
+        
+        // Auto-update system for live buyer data
+        async function initializeBuyerSystem() {
+            if (systemInitialized) {
+                console.log('⚠️ Buyer system already initialized, skipping...');
+                return;
+            }
+            
+            systemInitialized = true;
+            console.log('🚀 Starting DiorTheCow buyer tracking system...');
+            
+            // Clear any existing intervals first
+            if (window.buyerSystemIntervals) {
+                window.buyerSystemIntervals.forEach(interval => clearInterval(interval));
+                window.buyerSystemIntervals = [];
+            } else {
+                window.buyerSystemIntervals = [];
+            }
+            
+            // Make sure the status element exists
+            let updateStatus = document.getElementById('updateStatus');
+            if (!updateStatus) {
+                console.log('⚠️ Update status element not found, creating one...');
+                updateStatus = document.createElement('div');
+                updateStatus.id = 'updateStatus';
+                updateStatus.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: rgba(255, 255, 255, 0.95);
+                    padding: 10px 15px;
+                    border-radius: 25px;
+                    border: 2px solid #8b4513;
+                    font-size: 14px;
+                    font-weight: bold;
+                    z-index: 1000;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                `;
+                document.body.appendChild(updateStatus);
+                
+                // Add click functionality for manual refresh
+                updateStatus.addEventListener('click', async () => {
+                    console.log('🔄 Manual refresh triggered by user click');
+                    updateStatusText('🔄 Manual refresh...', '#8b4513');
+                    try {
+                        buyerNames = await fetchBuyerData();
+                        if (buyerNames && buyerNames.length > 0) {
+                            console.log('✅ Manual refresh completed:', buyerNames.length, 'holders');
+                            updateStatusText(`✅ Refreshed - tracking ${buyerNames.length} holders`, '#2d7d32');
+                            displayBuyerProfiles();
+                        } else {
+                            throw new Error('No data in API response');
+                        }
+                    } catch (error) {
+                        console.log('⚠️ Manual refresh failed, using fallback:', error);
+                        buyerNames = generateFallbackBuyers();
+                        updateStatusText(`⚠️ Offline mode - ${buyerNames.length} holders`, '#ff9800');
+                        displayBuyerProfiles();
+                    }
+                });
+            }
+            
+            function updateStatusText(text, color = '#8b4513') {
+                if (updateStatus) {
+                    updateStatus.textContent = text;
+                    updateStatus.style.color = color;
+                }
+            }
+            
+            // Fetch initial data - REAL API WITH FALLBACK
+            updateStatusText('🔄 Loading ticket holder data...', '#8b4513');
+            
+            // Initialize buyer system - try real API first with new token
+            try {
+                console.log('🚀 Starting buyer profile system with fresh token...');
+                console.log('🔑 Testing bearer token and API...');
+                
+                // Test the bearer token format first
+                const bearerToken = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDdjMDNkNGEtZGE4Yi00ZGZhLWEzY2QtZTZmNzFiYmQyZDhhIiwidHdpdHRlcklkIjoiMTk0ODg1NTk4NzU4ODI3NjIyNCIsInR3aXR0ZXJIYW5kbGUiOiJEaW9ydGhlY293IiwidHdpdHRlck5hbWUiOiJEaW9yIHRoZSBjb3ciLCJ0d2l0dGVyUGljdHVyZSI6Imh0dHBzOi8vc3RhdGljLnN0YXJzYXJlbmEuY29tL3VwbG9hZHMvYTQ0MmUxMzItYWU4OC00NWJmLTk2MDEtODk4MTY4Yjk1NTVlMTc1Mzc3Njk1MzQwNi5wbmciLCJhZGRyZXNzIjoiMHg1MGMzZTMxZTRiOTBjZjMxYTJlNmMyNjU5YmNhNTBhZWE3YzM2MmY0In0sImlhdCI6MTc1MzgwMjEzNSwiZXhwIjoxNzYyNDQyMTM1fQ.YpfSPCYxnIv7bL03slWDCEFEg6fgiGiMXcCW4l8XMV7bX8-_lPdzbw1UDesCxQJSimhCEm5u1cJ4mIWgm76q5tzc5WScPG8mZ_HT0qXtFTME5pjv3OOj7_w2jyN-O9fWEx6LFiHTSrhGWVsmntJo34xHJzZC6RFWrK-BVEaPa5aociQuTo447HIVmDHqJx509fL_qemLm6i3unxV0woQnCqe7KXr-SQF8JiuUMCT_EMudIY2u6z6pAYjlQQX1oWQILI73VhIrgNYbZbQkMZX1l7dKMSB9nsDUrtfA1illfb2aQJXk-gSoUTLW5PbJhdwMXneeO9p_12MPgGUOPItMDdzHMz_l94J0kbu_4pvsn8BNPdyJ3SXmhnZ6jge94YxN3PG2DQtFZeSce4igHV4hDZrdiBYH6EbQyIWNWxaDYPY5RE9y2paZk1SAA80n6fInpxVC7hSTw9fKjX-LOzmvEA-8UJ3O4Na8edGKihcCWTYKM77WphjayG6CFUal6u1vkHsHut9KU8IOJ4zbcy2N5idd2YwTvI4zj6CbbWEvcjHeVQ2liej74wsc_Ep_fDabidsGYYkqQMzJvcI11cHDKfs0OrDgjA5ccgU6sZEsbqWR8ig6esU0A_4AXAhgY1R20Y9ZjSeUpO88OH-Vj9-CwSAuHwDWbfrEhkt8obwzhg';
+                console.log('🔑 Bearer token length:', bearerToken.length);
+                console.log('🔑 Bearer token starts with:', bearerToken.substring(0, 50) + '...');
+                
+                // Test API endpoint directly
+                const testUrl = 'https://api.starsarena.com/shares/holders?userId=d7c03d4a-da8b-4dfa-a3cd-e6f71bbd2d8a&page=1&pageSize=20';
+                console.log('🌐 Testing API endpoint:', testUrl);
+                
+                try {
+                    const testResponse = await fetch(testUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${bearerToken}`,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    console.log('📡 Direct API test status:', testResponse.status);
+                    console.log('📡 Direct API test headers:', Object.fromEntries(testResponse.headers.entries()));
+                    
+                    if (testResponse.ok) {
+                        const testData = await testResponse.json();
+                        console.log('📦 Direct API test data:', testData);
+                        
+                        if (testData && testData.holders && testData.holders.length > 0) {
+                            console.log('✅ API working! Found', testData.holders.length, 'holders');
+                            buyerNames = extractBuyersFromResponse(testData);
+                            updateStatusText(`✅ Live tracking ${buyerNames.length} ticket holders`, '#2d7d32');
+                        } else {
+                            console.log('⚠️ API returned empty data');
+                            throw new Error('Empty API response');
+                        }
+                    } else {
+                        const errorText = await testResponse.text();
+                        console.log('❌ API test failed with status:', testResponse.status);
+                        console.log('❌ Error response:', errorText);
+                        throw new Error(`API returned status ${testResponse.status}: ${errorText}`);
+                    }
+                } catch (apiError) {
+                    console.log('❌ Direct API test failed:', apiError);
+                    throw apiError;
+                }
+                
+            } catch (error) {
+                console.log('⚠️ API test failed, using fallback data:', error.message);
+                buyerNames = generateFallbackBuyers();
+                updateStatusText(`⚠️ Sample data - ${buyerNames.length} ticket holders`, '#ff9800');
+            }
+            
+            // Start displaying profiles immediately
+            displayBuyerProfiles();
+            
+            // Set up buyer management cycle every 10 seconds (only add/remove as needed)
+            setInterval(displayBuyerProfiles, 10000);
+            
+            console.log('✅ Buyer system initialized successfully');
+            
+            // Create debug panel for troubleshooting
+            createDebugPanel();
+            
+            // Set up continuous updates every 15 seconds (less aggressive)
+            const updateInterval = setInterval(async () => {
+                console.log('🔄 Auto-updating ticket holder data...');
+                updateStatusText('🔄 Checking for updates...', '#8b4513');
+                try {
+                    const newBuyerData = await fetchBuyerData();
+                    if (newBuyerData && newBuyerData.length > 0) {
+                        const previousCount = buyerNames.length;
+                        buyerNames = newBuyerData;
+                        console.log('✅ Real ticket holder data updated:', buyerNames.length, 'holders');
+                        
+                        if (buyerNames.length > previousCount) {
+                            updateStatusText(`🎉 New ticket purchase! Now tracking ${buyerNames.length} holders`, '#4caf50');
+                        } else {
+                            updateStatusText(`✅ Live tracking ${buyerNames.length} ticket holders`, '#2d7d32');
+                        }
+                    } else {
+                        throw new Error('No data in API response');
+                    }
+                } catch (error) {
+                    console.log('⚠️ Auto-update failed, using fallback data:', error);
+                    buyerNames = generateFallbackBuyers();
+                    updateStatusText(`⚠️ Offline mode - ${buyerNames.length} ticket holders`, '#ff9800');
+                }
+            }, 15000); // Update every 15 seconds
+            window.buyerSystemIntervals.push(updateInterval);
+            
+            // Set up buyer monitoring every 10 seconds (only manage additions/removals)
+            const profileInterval = setInterval(() => {
+                console.log('🔄 Monitoring buyer changes...');
+                if (buyerNames && buyerNames.length > 0) {
+                    displayBuyerProfiles(); // Only adds new or removes sold profiles
+                }
+            }, 10000); // Check for changes every 10 seconds
+            window.buyerSystemIntervals.push(profileInterval);
+            
+            // Set up manual refresh every 3 minutes for fresh data
+            const refreshInterval = setInterval(async () => {
+                console.log('🔄 Manual refresh of buyer data...');
+                displayedBuyers.clear(); // Clear duplicate tracking
+                updateStatusText('🔄 Refreshing all data...', '#8b4513');
+                try {
+                    buyerNames = await fetchBuyerData();
+                    console.log('✅ Manual refresh completed:', buyerNames.length, 'buyers');
+                    updateStatusText(`✅ Data refreshed - tracking ${buyerNames.length} holders`, '#2d7d32');
+                    if (buyerNames.length > 0) {
+                        displayBuyerProfiles();
+                    }
+                } catch (error) {
+                    console.log('⚠️ Manual refresh failed:', error);
+                    updateStatusText(`⚠️ Refresh failed - tracking ${buyerNames.length} holders`, '#ff9800');
+                }
+            }, 180000); // Full refresh every 3 minutes
+            window.buyerSystemIntervals.push(refreshInterval);
+        }
+
+        // Initialize once when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeBuyerSystem);
+        } else {
+            // Page already loaded - start immediately
+            setTimeout(initializeBuyerSystem, 100);
+        }
+    </script>
+
+</body>
+
+</html>

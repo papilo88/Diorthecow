@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DiorTheCow Meme Gallery - The best cow memes in crypto">
+    <meta name="theme-color" content="#8b4513">
+    <title>Meme Gallery - DiorTheCow ($DIOR)</title>
+    <style>
+        /* --- Basic Setup --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: #f8f5f0;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            padding-bottom: 80px;
+        }
+
+        /* --- Layout Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* --- Center section with social buttons --- */
+        .center-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* --- Hamburger Menu --- */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        body.dark-mode .hamburger-line {
+            background: #fff;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* --- Sidebar Menu --- */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.9));
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            transition: right 0.3s ease;
+            z-index: 100;
+            padding: 80px 30px 30px 30px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-menu.active {
+            right: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: #fff;
+            transform: translateX(-10px);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-link-btn {
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(244, 228, 188, 0.2));
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-hero h1 {
+            font-size: clamp(2.5em, 5vw, 4em);
+            margin: 0.5em 0;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #8b4513, #a0522d, #654321);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-hero p {
+            font-size: 1.2em;
+            color: #654321;
+            margin-bottom: 30px;
+        }
+
+        /* --- Gallery Grid --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-content {
+            padding: 20px;
+        }
+
+        .gallery-item h3 {
+            margin: 0 0 10px 0;
+            color: #654321;
+            font-size: 1.3em;
+        }
+
+        .gallery-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* --- Upload Section --- */
+        .upload-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .upload-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed #8b4513;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(139, 69, 19, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-area:hover,
+        .upload-area.dragover {
+            border-color: #a0522d;
+            background: rgba(139, 69, 19, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .upload-content .upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .upload-content h3 {
+            color: #654321;
+            margin: 0 0 10px 0;
+            font-size: 1.4em;
+        }
+
+        .upload-content p {
+            color: #666;
+            margin: 0 0 20px 0;
+        }
+
+        .browse-btn {
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .browse-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .upload-form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #654321;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #8b4513;
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .upload-submit-btn {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            margin-top: 10px;
+        }
+
+        .upload-submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .upload-submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .upload-guidelines {
+            background: rgba(244, 228, 188, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #8b4513;
+        }
+
+        .upload-guidelines h4 {
+            color: #654321;
+            margin: 0 0 15px 0;
+        }
+
+        .upload-guidelines ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .upload-guidelines li {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-memes-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .user-meme-item {
+            position: relative;
+            border: 3px solid #4caf50;
+        }
+
+        .user-meme-item::before {
+            content: '👤 Your Meme';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+            transform: scale(1.1);
+        }
+
+        /* Responsive upload form */
+        @media (max-width: 768px) {
+            .upload-form {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+            }
+        }
+
+        /* --- Placeholder Message --- */
+        .coming-soon {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(244, 228, 188, 0.2));
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .coming-soon h2 {
+            color: #654321;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 15px 30px;
+            font-size: 0.9em;
+            color: #666;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 50;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .header {
+            background: rgba(139, 69, 19, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .logo {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.dark-mode .social-link-btn {
+            background: rgba(248, 245, 240, 0.9);
+            color: #8b4513;
+            border: 2px solid #f8f5f0;
+        }
+
+        body.dark-mode .social-link-btn:hover {
+            background: #f8f5f0;
+            color: #654321;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(248, 245, 240, 0.4);
+        }
+
+        body.dark-mode .section {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .section::before {
+            background: linear-gradient(90deg, #f8f5f0, #fff, #f4e4bc);
+        }
+
+        body.dark-mode .section h2 {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .section h2::after {
+            background: linear-gradient(90deg, #f8f5f0, #fff);
+        }
+
+        body.dark-mode .gallery-item {
+            background: rgba(139, 69, 19, 0.4);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .footer {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+            color: #f8f5f0;
+        }
+
+        /* Dark mode for upload section */
+        body.dark-mode .upload-section {
+            background: rgba(139, 69, 19, 0.4);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .upload-area {
+            border-color: #f8f5f0;
+            background: rgba(248, 245, 240, 0.1);
+        }
+
+        body.dark-mode .upload-area:hover,
+        body.dark-mode .upload-area.dragover {
+            border-color: #fff;
+            background: rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .upload-content h3 {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .upload-content p {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .browse-btn {
+            background: rgba(248, 245, 240, 0.9);
+            color: #8b4513;
+        }
+
+        body.dark-mode .form-group label {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .form-group input {
+            background: rgba(248, 245, 240, 0.1);
+            border-color: rgba(248, 245, 240, 0.3);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .form-group input:focus {
+            border-color: #f8f5f0;
+            box-shadow: 0 0 0 3px rgba(248, 245, 240, 0.1);
+        }
+
+        body.dark-mode .upload-guidelines {
+            background: rgba(248, 245, 240, 0.1);
+            border-left-color: #f8f5f0;
+        }
+
+        body.dark-mode .upload-guidelines h4 {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .upload-guidelines li {
+            color: #f8f5f0;
+        }
+
+        /* --- Dark Mode Toggle --- */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 25px;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 200;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            border: 2px solid #8b4513;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 19px;
+            height: 19px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            border-color: #f8f5f0;
+        }
+
+        body.dark-mode .theme-toggle::before {
+            transform: translateX(25px);
+            background: #8b4513;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Responsive positioning for theme toggle */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 100px;
+                right: 15px;
+                transform: none;
+            }
+            
+            .theme-toggle:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-toggle {
+                bottom: 90px;
+                right: 10px;
+                width: 45px;
+                height: 23px;
+            }
+            
+            .theme-toggle::before {
+                width: 17px;
+                height: 17px;
+                top: 2px;
+                left: 2px;
+            }
+            
+            body.dark-mode .theme-toggle::before {
+                transform: translateX(22px);
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-hero {
+                padding: 40px 20px;
+            }
+
+            .upload-section {
+                padding: 30px 20px;
+            }
+
+            .center-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-hero h1 {
+                font-size: 2em;
+            }
+
+            .upload-section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu" id="sidebarMenu">
+        <ul class="sidebar-nav">
+            <li><a href="Index.html">🏠 Home</a></li>
+            <li><a href="about.html">📖 About</a></li>
+            <li><a href="features.html">⭐ Features</a></li>
+            <li><a href="tokenomics.html">💰 Tokenomics</a></li>
+            <li><a href="roadmap.html">🗺️ Roadmap</a></li>
+            <li><a href="gallery.html">🎨 Meme Gallery</a></li>
+            <li><a href="whitelist.html">✅ Whitelist</a></li>
+        </ul>
+    </div>
+
+    <div class="header container">
+        <div class="logo">
+            <img src="dior.jpg" alt="Dior Logo" class="logo-image">
+            DiorTheCow
+        </div>
+        
+        <div class="center-section">
+            <div class="social-links">
+                <a href="https://arenabook.xyz" target="_blank" rel="noopener noreferrer" class="social-link-btn">Buy $DIOR</a>
+                <a href="https://x.com/diorthecow?s=21" target="_blank" rel="noopener noreferrer" class="social-link-btn">Follow on X</a>
+                <a href="https://arena.social/Diorthecow" target="_blank" rel="noopener noreferrer" class="social-link-btn">Join The Herd</a>
+            </div>
+        </div>
+        
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="gallery-hero">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+                <h1>🎨 Meme Gallery</h1>
+            </div>
+            <p>The finest collection of DiorTheCow memes from our amazing community!</p>
+        </div>
+
+        <div class="upload-section">
+            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+                <h2 style="margin: 0; color: #654321;">Share Your Memes! 🎨</h2>
+            </div>
+            
+            <div class="upload-form">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">�</div>
+                        <h3>Drag & Drop Your Meme Here</h3>
+                        <p>or click to browse files</p>
+                        <button type="button" class="browse-btn" onclick="document.getElementById('fileInput').click()">
+                            Choose File
+                        </button>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="preview-container" id="previewContainer">
+                        <img id="previewImage" class="preview-image" alt="Preview">
+                    </div>
+                </div>
+                
+                <div class="upload-form-fields">
+                    <div class="form-group">
+                        <label for="memeTitle">Meme Title (Optional)</label>
+                        <input type="text" id="memeTitle" placeholder="Give your meme a funny title..." maxlength="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memeCreator">Your Name/Handle (Optional)</label>
+                        <input type="text" id="memeCreator" placeholder="Anonymous Cow Lover" maxlength="30">
+                    </div>
+                    
+                    <button type="button" id="uploadBtn" class="upload-submit-btn" disabled>
+                        🚀 Share Meme with The Herd
+                    </button>
+                </div>
+            </div>
+            
+            <div class="upload-guidelines">
+                <h4>📋 Meme Guidelines</h4>
+                <ul>
+                    <li>✅ Keep it fun, friendly, and cow-related</li>
+                    <li>✅ Max file size: 5MB</li>
+                    <li>✅ Formats: JPG, PNG, GIF, WebP</li>
+                    <li>❌ No offensive, hateful, or inappropriate content</li>
+                    <li>💾 Your memes are saved locally in your browser</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- User Uploaded Memes Section -->
+        <div class="user-memes-section" id="userMemesSection" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #4caf50; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+                <h2 style="margin: 0; color: #4caf50;">Your Memes 👤</h2>
+            </div>
+            <div class="gallery-grid" id="userGalleryGrid">
+                <!-- User uploaded memes will appear here -->
+            </div>
+        </div>
+
+        <!-- Original Gallery Section -->
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; margin-top: 40px;">
+            <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+            <h2 style="margin: 0; color: #654321;">Community Collection 🖼️</h2>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery images will be loaded here dynamically -->
+        </div>
+
+        <div class="coming-soon" id="comingSoon">
+            <h2>🚧 Gallery Loading...</h2>
+            <p>Upload your first meme images (gallery1.jpg, gallery2.jpg, etc.) to see them here!<br><br>
+            Your memes will automatically appear in this gallery once uploaded to the project folder.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 DiorTheCow. All Rights Reserved. | Meme Gallery</p>
+    </div>
+
+    <script>
+        // Hamburger menu functionality
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleSidebar() {
+            hamburgerMenu.classList.toggle('active');
+            sidebarMenu.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            hamburgerMenu.classList.remove('active');
+            sidebarMenu.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        hamburgerMenu.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when clicking on a navigation link
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save theme preference to localStorage
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        }
+
+        // Load saved theme on page load
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        // Meme Upload Functionality
+        let selectedFile = null;
+        const STORAGE_KEY = 'diorTheCowMemes';
+
+        // Initialize upload functionality
+        function initUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const previewContainer = document.getElementById('previewContainer');
+            const previewImage = document.getElementById('previewImage');
+            const memeTitle = document.getElementById('memeTitle');
+            const memeCreator = document.getElementById('memeCreator');
+
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelect(files[0]);
+                }
+            });
+
+            // Click to upload
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // File input change
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleFileSelect(e.target.files[0]);
+                }
+            });
+
+            // Upload button click
+            uploadBtn.addEventListener('click', uploadMeme);
+
+            // Load existing memes
+            loadUserMemes();
+        }
+
+        // Handle file selection
+        function handleFileSelect(file) {
+            // Validate file
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file!');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                alert('File size must be less than 5MB!');
+                return;
+            }
+
+            selectedFile = file;
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+                document.getElementById('uploadBtn').disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Upload meme
+        function uploadMeme() {
+            if (!selectedFile) return;
+
+            const title = document.getElementById('memeTitle').value || 'Untitled Meme';
+            const creator = document.getElementById('memeCreator').value || 'Anonymous Cow Lover';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const memeData = {
+                    id: Date.now(),
+                    title: title,
+                    creator: creator,
+                    image: e.target.result,
+                    timestamp: new Date().toISOString(),
+                    fileName: selectedFile.name
+                };
+
+                // Save to localStorage
+                saveUserMeme(memeData);
+                
+                // Reset form
+                resetForm();
+                
+                // Show success message
+                showMessage('🎉 Meme uploaded successfully! Check out your creation below.', 'success');
+                
+                // Refresh user memes display
+                loadUserMemes();
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+
+        // Save meme to localStorage
+        function saveUserMeme(memeData) {
+            let memes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            memes.unshift(memeData); // Add to beginning
+            
+            // Keep only last 20 memes to prevent storage overflow
+            if (memes.length > 20) {
+                memes = memes.slice(0, 20);
+            }
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(memes));
+        }
+
+        // Load and display user memes
+        function loadUserMemes() {
+            const memes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            const userGalleryGrid = document.getElementById('userGalleryGrid');
+            const userMemesSection = document.getElementById('userMemesSection');
+
+            if (memes.length === 0) {
+                userMemesSection.style.display = 'none';
+                return;
+            }
+
+            userMemesSection.style.display = 'block';
+            userGalleryGrid.innerHTML = '';
+
+            memes.forEach(meme => {
+                const memeElement = createMemeElement(meme, true);
+                userGalleryGrid.appendChild(memeElement);
+            });
+        }
+
+        // Create meme element
+        function createMemeElement(meme, isUserMeme = false) {
+            const div = document.createElement('div');
+            div.className = `gallery-item ${isUserMeme ? 'user-meme-item' : ''}`;
+            
+            const timeAgo = getTimeAgo(new Date(meme.timestamp));
+            
+            div.innerHTML = `
+                ${isUserMeme ? `<button class="delete-btn" onclick="deleteMeme(${meme.id})" title="Delete meme">×</button>` : ''}
+                <img src="${meme.image}" alt="${meme.title}" loading="lazy">
+                <div class="gallery-item-content">
+                    <h3>${meme.title}</h3>
+                    <p>By: ${meme.creator}</p>
+                    ${isUserMeme ? `<p style="font-size: 0.8em; color: #888;">Uploaded ${timeAgo}</p>` : ''}
+                </div>
+            `;
+            
+            return div;
+        }
+
+        // Delete meme
+        function deleteMeme(memeId) {
+            if (confirm('Are you sure you want to delete this meme?')) {
+                let memes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                memes = memes.filter(meme => meme.id !== memeId);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(memes));
+                loadUserMemes();
+                showMessage('🗑️ Meme deleted successfully.', 'info');
+            }
+        }
+
+        // Reset upload form
+        function resetForm() {
+            selectedFile = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('memeTitle').value = '';
+            document.getElementById('memeCreator').value = '';
+            document.getElementById('previewContainer').style.display = 'none';
+            document.getElementById('uploadBtn').disabled = true;
+        }
+
+        // Show message
+        function showMessage(message, type = 'info') {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: bold;
+                max-width: 300px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOutRight 0.3s ease-in forwards';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.parentNode.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Get time ago string
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) return 'just now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return `${diffDays}d ago`;
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Gallery loader
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const comingSoon = document.getElementById('comingSoon');
+            const galleryImages = [];
+
+            // Check for gallery images (gallery1.jpg to gallery5.jpg)
+            for (let i = 1; i <= 5; i++) {
+                const img = new Image();
+                img.onload = function() {
+                    galleryImages.push({
+                        src: `gallery${i}.jpg`,
+                        title: `DiorTheCow Meme #${i}`,
+                        description: `Epic meme from the DiorTheCow community!`
+                    });
+                    renderGallery();
+                };
+                img.onerror = function() {
+                    console.log(`Gallery image ${i} not found`);
+                };
+                img.src = `gallery${i}.jpg`;
+            }
+
+            function renderGallery() {
+                if (galleryImages.length > 0) {
+                    comingSoon.style.display = 'none';
+                    galleryGrid.innerHTML = galleryImages.map(image => `
+                        <div class="gallery-item">
+                            <img src="${image.src}" alt="${image.title}" loading="lazy">
+                            <div class="gallery-item-content">
+                                <h3>${image.title}</h3>
+                                <p>${image.description}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    setTimeout(() => {
+                        if (galleryImages.length === 0) {
+                            comingSoon.style.display = 'block';
+                        }
+                    }, 2000); // Wait 2 seconds for images to load
+                }
+            }
+        }
+
+        // Load gallery on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            loadGallery();
+            initUpload(); // Initialize upload functionality
+        });
+    </script>
+</body>
+
+</html>
