@@ -86,13 +86,6 @@
             }
         }
 
-        /* --- Center section with social buttons --- */
-        .center-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
         /* --- Hamburger Menu --- */
         .hamburger-menu {
             display: flex;
@@ -400,7 +393,169 @@
             margin: 8px 0;
         }
 
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .header {
+            background: rgba(139, 69, 19, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .logo {
+            background: linear-gradient(45deg, #f8f5f0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.dark-mode .social-link-btn {
+            background: rgba(248, 245, 240, 0.9);
+            color: #8b4513;
+            border: 2px solid #f8f5f0;
+        }
+
+        body.dark-mode .social-link-btn:hover {
+            background: #f8f5f0;
+            color: #654321;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(248, 245, 240, 0.4);
+        }
+
+        body.dark-mode .section {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+        }
+
+        body.dark-mode .section::before {
+            background: linear-gradient(90deg, #f8f5f0, #fff, #f4e4bc);
+        }
+
+        body.dark-mode .section h2 {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .section h2::after {
+            background: linear-gradient(90deg, #f8f5f0, #fff);
+        }
+
+        body.dark-mode .features-grid li {
+            background: rgba(139, 69, 19, 0.4);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .features-grid strong {
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .footer {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(248, 245, 240, 0.2);
+            color: #f8f5f0;
+        }
+
+        body.dark-mode .hamburger-line {
+            background: #fff;
+        }
+
         /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 28px;
+                font-weight: 800;
+            }
+
+            .center-section {
+                gap: 8px;
+            }
+
+            .social-link-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .hamburger {
+                right: 10px;
+            }
+
+            .hamburger-line {
+                width: 20px;
+                height: 2px;
+            }
+
+            .section {
+                margin: 15px 10px;
+                padding: 20px 15px;
+            }
+
+            .section h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .features-grid li {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px;
+                gap: 8px;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            .center-section {
+                gap: 6px;
+            }
+
+            .social-link-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            .hamburger {
+                right: 8px;
+            }
+
+            .hamburger-line {
+                width: 18px;
+                height: 2px;
+            }
+
+            .section {
+                margin: 10px 8px;
+                padding: 15px 12px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .features-grid li {
+                padding: 12px;
+            }
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 20px 15px;
