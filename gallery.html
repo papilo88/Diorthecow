@@ -16,7 +16,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            background: #f8f5f0;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
             color: #1a1a1a;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -41,7 +41,7 @@
             padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.95));
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 100;
@@ -60,7 +60,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .logo-image {
@@ -68,13 +68,16 @@
             height: 50px;
             border-radius: 50%;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -142,7 +145,7 @@
             transition: right 0.3s ease;
             z-index: 100;
             padding: 80px 30px 30px 30px;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar-menu.active {
@@ -155,7 +158,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -187,7 +190,7 @@
             display: block;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar-nav a:hover {
@@ -195,7 +198,7 @@
             border-left-color: #fff;
             transform: translateX(-10px);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-link-btn {
@@ -503,7 +506,7 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
+
             .upload-area {
                 padding: 30px 15px;
             }
@@ -692,7 +695,7 @@
             background: #fff;
             border-radius: 50%;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         body.dark-mode .theme-toggle {
@@ -718,7 +721,7 @@
                 right: 15px;
                 transform: none;
             }
-            
+
             .theme-toggle:hover {
                 transform: scale(1.1);
             }
@@ -731,14 +734,14 @@
                 width: 45px;
                 height: 23px;
             }
-            
+
             .theme-toggle::before {
                 width: 17px;
                 height: 17px;
                 top: 2px;
                 left: 2px;
             }
-            
+
             body.dark-mode .theme-toggle::before {
                 transform: translateX(22px);
             }
@@ -790,7 +793,7 @@
 <body>
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    
+
     <!-- Sidebar Menu -->
     <div class="sidebar-menu" id="sidebarMenu">
         <ul class="sidebar-nav">
@@ -809,7 +812,7 @@
             <img src="dior.jpg" alt="Dior Logo" class="logo-image">
             <span class="logo-text">$DIOR</span>
         </div>
-        
+
         <div class="hamburger-menu" id="hamburgerMenu">
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
@@ -820,7 +823,8 @@
     <div class="container">
         <div class="gallery-hero">
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo"
+                    style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
                 <h1>🎨 Meme Gallery</h1>
             </div>
             <p>The finest collection of DiorTheCow memes from our amazing community!</p>
@@ -828,10 +832,11 @@
 
         <div class="upload-section">
             <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo"
+                    style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
                 <h2 style="margin: 0; color: #654321;">Share Your Memes! 🎨</h2>
             </div>
-            
+
             <div class="upload-form">
                 <div class="upload-area" id="uploadArea">
                     <div class="upload-content">
@@ -847,24 +852,24 @@
                         <img id="previewImage" class="preview-image" alt="Preview">
                     </div>
                 </div>
-                
+
                 <div class="upload-form-fields">
                     <div class="form-group">
                         <label for="memeTitle">Meme Title (Optional)</label>
                         <input type="text" id="memeTitle" placeholder="Give your meme a funny title..." maxlength="50">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="memeCreator">Your Name/Handle (Optional)</label>
                         <input type="text" id="memeCreator" placeholder="Anonymous Cow Lover" maxlength="30">
                     </div>
-                    
+
                     <button type="button" id="uploadBtn" class="upload-submit-btn" disabled>
                         🚀 Share Meme with The Herd
                     </button>
                 </div>
             </div>
-            
+
             <div class="upload-guidelines">
                 <h4>📋 Meme Guidelines</h4>
                 <ul>
@@ -880,7 +885,8 @@
         <!-- User Uploaded Memes Section -->
         <div class="user-memes-section" id="userMemesSection" style="display: none;">
             <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
-                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #4caf50; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo"
+                    style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #4caf50; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
                 <h2 style="margin: 0; color: #4caf50;">Your Memes 👤</h2>
             </div>
             <div class="gallery-grid" id="userGalleryGrid">
@@ -889,8 +895,10 @@
         </div>
 
         <!-- Original Gallery Section -->
-        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; margin-top: 40px;">
-            <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+        <div
+            style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; margin-top: 40px;">
+            <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo"
+                style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
             <h2 style="margin: 0; color: #654321;">Community Collection 🖼️</h2>
         </div>
 
@@ -901,7 +909,7 @@
         <div class="coming-soon" id="comingSoon">
             <h2>🚧 Gallery Loading...</h2>
             <p>Upload your first meme images (gallery1.jpg, gallery2.jpg, etc.) to see them here!<br><br>
-            Your memes will automatically appear in this gallery once uploaded to the project folder.</p>
+                Your memes will automatically appear in this gallery once uploaded to the project folder.</p>
         </div>
     </div>
 
@@ -938,7 +946,7 @@
         // Theme Toggle Functionality
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            
+
             // Save theme preference to localStorage
             const isDarkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
@@ -1018,7 +1026,7 @@
             }
 
             selectedFile = file;
-            
+
             // Show preview
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -1049,13 +1057,13 @@
 
                 // Save to localStorage
                 saveUserMeme(memeData);
-                
+
                 // Reset form
                 resetForm();
-                
+
                 // Show success message
                 showMessage('🎉 Meme uploaded successfully! Check out your creation below.', 'success');
-                
+
                 // Refresh user memes display
                 loadUserMemes();
             };
@@ -1066,12 +1074,12 @@
         function saveUserMeme(memeData) {
             let memes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
             memes.unshift(memeData); // Add to beginning
-            
+
             // Keep only last 20 memes to prevent storage overflow
             if (memes.length > 20) {
                 memes = memes.slice(0, 20);
             }
-            
+
             localStorage.setItem(STORAGE_KEY, JSON.stringify(memes));
         }
 
@@ -1099,9 +1107,9 @@
         function createMemeElement(meme, isUserMeme = false) {
             const div = document.createElement('div');
             div.className = `gallery-item ${isUserMeme ? 'user-meme-item' : ''}`;
-            
+
             const timeAgo = getTimeAgo(new Date(meme.timestamp));
-            
+
             div.innerHTML = `
                 ${isUserMeme ? `<button class="delete-btn" onclick="deleteMeme(${meme.id})" title="Delete meme">×</button>` : ''}
                 <img src="${meme.image}" alt="${meme.title}" loading="lazy">
@@ -1111,7 +1119,7 @@
                     ${isUserMeme ? `<p style="font-size: 0.8em; color: #888;">Uploaded ${timeAgo}</p>` : ''}
                 </div>
             `;
-            
+
             return div;
         }
 
@@ -1154,9 +1162,9 @@
                 animation: slideInRight 0.3s ease-out;
             `;
             messageDiv.textContent = message;
-            
+
             document.body.appendChild(messageDiv);
-            
+
             setTimeout(() => {
                 messageDiv.style.animation = 'slideOutRight 0.3s ease-in forwards';
                 setTimeout(() => {
@@ -1204,7 +1212,7 @@
             // Check for gallery images (gallery1.jpg to gallery5.jpg)
             for (let i = 1; i <= 5; i++) {
                 const img = new Image();
-                img.onload = function() {
+                img.onload = function () {
                     galleryImages.push({
                         src: `gallery${i}.jpg`,
                         title: `DiorTheCow Meme #${i}`,
@@ -1212,7 +1220,7 @@
                     });
                     renderGallery();
                 };
-                img.onerror = function() {
+                img.onerror = function () {
                     console.log(`Gallery image ${i} not found`);
                 };
                 img.src = `gallery${i}.jpg`;
@@ -1241,7 +1249,7 @@
         }
 
         // Load gallery on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadTheme();
             loadGallery();
             initUpload(); // Initialize upload functionality
