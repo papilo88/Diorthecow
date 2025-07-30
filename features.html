@@ -23,7 +23,8 @@
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            padding-bottom: 80px; /* Add padding for fixed footer */
+            padding-bottom: 80px;
+            /* Add padding for fixed footer */
         }
 
         /* --- Layout Container --- */
@@ -52,7 +53,8 @@
 
         .logo {
             font-size: 1.8em;
-            font-weight: 900; /* Made more bold */
+            font-weight: 900;
+            /* Made more bold */
             background: linear-gradient(45deg, #8b4513, #a0522d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -61,7 +63,7 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .logo-image {
@@ -69,12 +71,19 @@
             height: 50px;
             border-radius: 50%;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* --- Center section with social buttons --- */
@@ -104,10 +113,6 @@
             border-radius: 2px;
         }
 
-        body.dark-mode .hamburger-line {
-            background: #fff;
-        }
-
         .hamburger-menu.active .hamburger-line:nth-child(1) {
             transform: rotate(45deg) translate(6px, 6px);
         }
@@ -134,7 +139,7 @@
             transition: right 0.3s ease;
             z-index: 1002;
             padding: 100px 30px 30px 30px;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
         }
 
@@ -148,7 +153,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -161,7 +166,8 @@
         }
 
         .nav-menu {
-            display: none; /* Hide original nav menu */
+            display: none;
+            /* Hide original nav menu */
         }
 
         .sidebar-nav {
@@ -184,7 +190,7 @@
             display: block;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar-nav a:hover {
@@ -192,7 +198,7 @@
             border-left-color: #fff;
             transform: translateX(-10px);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .nav-link {
@@ -249,7 +255,7 @@
             background: linear-gradient(45deg, #8b4513, #a0522d) !important;
             color: #fff !important;
             font-weight: bold !important;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3) !important;
             border: 2px solid #8b4513;
         }
@@ -394,149 +400,6 @@
             margin: 8px 0;
         }
 
-        /* --- Dark Mode Styles --- */
-        body.dark-mode {
-            background: linear-gradient(135deg, #8b4513, #a0522d);
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .header {
-            background: rgba(139, 69, 19, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .logo {
-            background: linear-gradient(45deg, #f8f5f0, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        body.dark-mode .social-link-btn {
-            background: rgba(248, 245, 240, 0.9);
-            color: #8b4513;
-            border: 2px solid #f8f5f0;
-        }
-
-        body.dark-mode .social-link-btn:hover {
-            background: #f8f5f0;
-            color: #654321;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(248, 245, 240, 0.4);
-        }
-
-        body.dark-mode .section {
-            background: rgba(139, 69, 19, 0.3);
-            border: 1px solid rgba(248, 245, 240, 0.2);
-        }
-
-        body.dark-mode .section::before {
-            background: linear-gradient(90deg, #f8f5f0, #fff, #f4e4bc);
-        }
-
-        body.dark-mode .section h2 {
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .section h2::after {
-            background: linear-gradient(90deg, #f8f5f0, #fff);
-        }
-
-        body.dark-mode .feature-card {
-            background: rgba(139, 69, 19, 0.4);
-            border: 1px solid rgba(248, 245, 240, 0.2);
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .feature-card h3 {
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .footer {
-            background: rgba(139, 69, 19, 0.3);
-            border: 1px solid rgba(248, 245, 240, 0.2);
-            color: #f8f5f0;
-        }
-
-        /* --- Dark Mode Toggle --- */
-        .theme-toggle {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 25px;
-            background: linear-gradient(45deg, #8b4513, #a0522d);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 200;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-            border: 2px solid #8b4513;
-        }
-
-        .theme-toggle::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 19px;
-            height: 19px;
-            background: #fff;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        body.dark-mode .theme-toggle {
-            background: linear-gradient(45deg, #f8f5f0, #fff);
-            border-color: #f8f5f0;
-        }
-
-        body.dark-mode .theme-toggle::before {
-            transform: translateX(25px);
-            background: #8b4513;
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-        }
-
-        /* Responsive positioning for theme toggle */
-        @media (max-width: 768px) {
-            .theme-toggle {
-                top: auto;
-                bottom: 100px;
-                right: 15px;
-                transform: none;
-            }
-            
-            .theme-toggle:hover {
-                transform: scale(1.1);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .theme-toggle {
-                bottom: 90px;
-                right: 10px;
-                width: 45px;
-                height: 23px;
-            }
-            
-            .theme-toggle::before {
-                width: 17px;
-                height: 17px;
-                top: 2px;
-                left: 2px;
-            }
-            
-            body.dark-mode .theme-toggle::before {
-                transform: translateX(22px);
-            }
-        }
-
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .container {
@@ -563,7 +426,7 @@
                 width: 100%;
                 align-items: center;
             }
-            
+
             .social-link-btn {
                 width: 200px;
                 text-align: center;
@@ -572,7 +435,7 @@
             .section {
                 padding: 25px 20px;
             }
-            
+
             .section-cow {
                 width: 80px;
                 height: 80px;
@@ -613,7 +476,7 @@
 <body>
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    
+
     <!-- Sidebar Menu -->
     <div class="sidebar-menu" id="sidebarMenu">
         <ul class="sidebar-nav">
@@ -625,14 +488,6 @@
             <li><a href="gallery.html">🎨 Meme Gallery</a></li>
             <li><a href="whitelist.html">✅ Whitelist</a></li>
         </ul>
-        
-        <!-- Theme Toggle in Sidebar -->
-        <div class="sidebar-theme-toggle">
-            <div class="theme-toggle" onclick="toggleTheme()">
-                <span id="themeText">Dark Mode</span>
-                <div class="theme-toggle-switch"></div>
-            </div>
-        </div>
     </div>
 
     <div class="header container">
@@ -640,7 +495,7 @@
             <img src="dior.jpg" alt="Dior Logo" class="logo-image">
             <span class="logo-text">$DIOR</span>
         </div>
-        
+
         <div class="hamburger-menu" id="hamburgerMenu">
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
@@ -696,14 +551,14 @@
         // Theme Toggle Functionality
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            
+
             // Save theme preference to localStorage
             const isDarkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         }
 
         // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
