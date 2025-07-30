@@ -115,12 +115,12 @@
         .center-section {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px; /* Reduced from 20px to bring buttons closer to logo */
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px; /* Reduced from 15px for tighter spacing */
         }
 
         /* --- Hamburger Menu --- */
@@ -238,19 +238,21 @@
         .social-link-btn {
             background: linear-gradient(45deg, #8b4513, #a0522d);
             color: #fff;
-            padding: 12px 25px;
+            padding: 14px 28px; /* Increased padding for more prominence */
             text-decoration: none;
             border-radius: 25px;
-            font-weight: bold;
+            font-weight: 900; /* Increased from bold to 900 for extra boldness */
+            font-size: 1.05em; /* Slightly larger text */
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4); /* Enhanced shadow */
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.5px; /* Added letter spacing for better readability */
         }
 
         .social-link-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.4);
+            transform: translateY(-3px) scale(1.02); /* Added slight scale for more impact */
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.6); /* Enhanced shadow on hover */
         }
 
         .social-link-btn::before {
@@ -586,7 +588,7 @@
             /* Home page mobile layout */
             body.home-page .center-section {
                 flex-direction: row;
-                gap: 8px;
+                gap: 10px; /* Increased from 8px */
                 flex-wrap: nowrap;
                 justify-content: center;
                 align-items: center;
@@ -594,15 +596,16 @@
 
             body.home-page .social-links {
                 flex-direction: row;
-                gap: 6px;
+                gap: 8px; /* Increased from 6px */
                 align-items: center;
                 flex-wrap: nowrap;
             }
 
             body.home-page .social-link-btn {
-                width: 85px !important;
-                padding: 8px 6px !important;
-                font-size: 0.7em !important;
+                width: 90px !important; /* Increased from 85px */
+                padding: 10px 8px !important; /* Increased padding */
+                font-size: 0.75em !important; /* Increased from 0.7em */
+                font-weight: 900 !important; /* Ensure boldness */
                 white-space: nowrap;
                 text-align: center;
                 border-radius: 15px;
@@ -715,20 +718,21 @@
             /* Home page mobile layout for 480px */
             body.home-page .center-section {
                 flex-direction: row;
-                gap: 4px;
+                gap: 6px; /* Increased from 4px for better spacing */
                 flex-wrap: nowrap;
                 justify-content: center;
             }
 
             body.home-page .social-links {
-                gap: 3px;
+                gap: 5px; /* Increased from 3px */
                 flex-wrap: nowrap;
             }
 
             body.home-page .social-link-btn {
-                width: 75px !important;
-                padding: 6px 4px !important;
-                font-size: 0.6em !important;
+                width: 80px !important; /* Increased from 75px */
+                padding: 8px 6px !important; /* Increased padding */
+                font-size: 0.65em !important; /* Increased from 0.6em */
+                font-weight: 900 !important; /* Ensure boldness on mobile */
                 border-radius: 12px;
                 white-space: nowrap;
             }
