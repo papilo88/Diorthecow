@@ -697,6 +697,7 @@
                 padding: 3px 6px;
                 font-size: 10px;
                 border-radius: 15px;
+                animation: float 3s ease-in-out infinite;
             }
 
             .buyer-avatar {
@@ -754,12 +755,14 @@
             }
 
             body.home-page .social-link-btn {
-                width: 75px !important;
+                width: 85px !important;
                 padding: 6px 4px !important;
                 font-size: 0.6em !important;
                 font-weight: 900 !important;
                 border-radius: 12px;
                 white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             /* Non-home page mobile theme toggle positioning */
@@ -816,8 +819,15 @@
             }
 
             .buyer-profile {
-                display: none;
-                /* Hide buyer profiles on very small screens to avoid clutter */
+                padding: 2px 4px;
+                font-size: 8px;
+                border-radius: 12px;
+                animation: float 4s ease-in-out infinite;
+            }
+
+            .buyer-avatar {
+                width: 16px;
+                height: 16px;
             }
 
             body {
