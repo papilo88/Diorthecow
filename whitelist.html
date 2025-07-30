@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DiorTheCow Whitelist - Exclusive access for Arena ticket holders and @Nochill badge holders">
+    <meta name="description"
+        content="DiorTheCow Whitelist - Exclusive access for Arena ticket holders and @Nochill badge holders">
     <meta name="theme-color" content="#8b4513">
     <title>Whitelist - DiorTheCow ($DIOR)</title>
     <style>
@@ -16,7 +17,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            background: #f8f5f0;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
             color: #1a1a1a;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -41,7 +42,7 @@
             padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.95));
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 100;
@@ -60,7 +61,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .logo-image {
@@ -68,13 +69,16 @@
             height: 50px;
             border-radius: 50%;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -142,7 +146,7 @@
             transition: right 0.3s ease;
             z-index: 100;
             padding: 80px 30px 30px 30px;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar-menu.active {
@@ -155,7 +159,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -187,7 +191,7 @@
             display: block;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar-nav a:hover {
@@ -195,7 +199,7 @@
             border-left-color: #fff;
             transform: translateX(-10px);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-link-btn {
@@ -229,21 +233,22 @@
             font-size: clamp(2.5em, 5vw, 4em);
             margin: 0.5em 0;
             line-height: 1.2;
-            background: linear-gradient(45deg, #8b4513, #a0522d, #654321);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #f4e4bc;
+            /* Cream color */
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
         }
 
         .whitelist-hero p {
             font-size: 1.2em;
-            color: #654321;
+            color: #f4e4bc;
+            /* Cream color */
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.3);
         }
 
         /* --- Whitelist Content --- */
         .whitelist-section {
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.85), rgba(160, 82, 45, 0.85));
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             padding: 40px;
@@ -322,7 +327,7 @@
         }
 
         .badge-item {
-            background: rgba(255, 255, 255, 0.8);
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.75), rgba(160, 82, 45, 0.75));
             padding: 20px;
             border-radius: 15px;
             text-align: center;
@@ -401,7 +406,7 @@
             padding: 15px 30px;
             font-size: 0.9em;
             color: #666;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.95));
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -502,47 +507,81 @@
 
         /* --- Dark Mode Toggle --- */
         .theme-toggle {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
             background: linear-gradient(45deg, #8b4513, #a0522d);
-            border-radius: 25px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 200;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
             border: 2px solid #8b4513;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .theme-toggle::before {
+        .theme-toggle-switch {
+            width: 35px;
+            height: 18px;
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.3), rgba(160, 82, 45, 0.3));
+            border-radius: 18px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-switch::before {
             content: '';
             position: absolute;
             top: 2px;
             left: 2px;
-            width: 19px;
-            height: 19px;
+            width: 14px;
+            height: 14px;
             background: #fff;
             border-radius: 50%;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         body.dark-mode .theme-toggle {
             background: linear-gradient(45deg, #f8f5f0, #fff);
             border-color: #f8f5f0;
+            color: #8b4513;
         }
 
-        body.dark-mode .theme-toggle::before {
-            transform: translateX(25px);
+        body.dark-mode .theme-toggle-switch {
+            background: rgba(139, 69, 19, 0.3);
+        }
+
+        body.dark-mode .theme-toggle-switch::before {
+            transform: translateX(17px);
             background: #8b4513;
         }
 
         .theme-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            box-shadow: 0 6px 20px rgba(248, 245, 240, 0.4);
+        }
+
+        /* Mobile theme toggle in sidebar */
+        .sidebar-theme-toggle {
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-theme-toggle .theme-toggle {
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.2), rgba(160, 82, 45, 0.2));
+            border-color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            padding: 8px 10px;
         }
 
         /* Responsive positioning for theme toggle */
@@ -553,7 +592,7 @@
                 right: 15px;
                 transform: none;
             }
-            
+
             .theme-toggle:hover {
                 transform: scale(1.1);
             }
@@ -566,14 +605,14 @@
                 width: 45px;
                 height: 23px;
             }
-            
+
             .theme-toggle::before {
                 width: 17px;
                 height: 17px;
                 top: 2px;
                 left: 2px;
             }
-            
+
             body.dark-mode .theme-toggle::before {
                 transform: translateX(22px);
             }
@@ -583,6 +622,60 @@
         @media (max-width: 768px) {
             .container {
                 padding: 20px 15px;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 15px 0;
+                margin-bottom: 15px;
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: linear-gradient(45deg, rgba(139, 69, 19, 0.98), rgba(160, 82, 45, 0.98)) !important;
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                justify-content: space-between;
+            }
+
+            /* Hide desktop theme toggle on mobile */
+            .theme-toggle {
+                display: none !important;
+            }
+
+            .hamburger-menu {
+                position: fixed !important;
+                top: 15px;
+                right: 15px;
+                z-index: 1001;
+                background: rgba(139, 69, 19, 0.9);
+                padding: 8px;
+                border-radius: 8px;
+                backdrop-filter: blur(10px);
+            }
+
+            body {
+                padding-top: 80px;
+            }
+
+            .sidebar-menu {
+                width: 280px;
+                padding: 90px 20px 20px 20px;
+                z-index: 1002;
+            }
+
+            .sidebar-overlay {
+                z-index: 1001;
+            }
+
+            .sidebar-nav li {
+                margin-bottom: 15px;
+            }
+
+            .sidebar-nav a {
+                padding: 12px 15px;
+                font-size: 1.1em;
             }
 
             .whitelist-section {
@@ -601,17 +694,18 @@
             .badge-item {
                 min-width: auto;
             }
+        }
 
-            .center-section {
-                flex-direction: column;
-                gap: 10px;
-            }
+        .center-section {
+            flex-direction: column;
+            gap: 10px;
+        }
 
-            .social-links {
-                flex-direction: column;
-                gap: 8px;
-                align-items: center;
-            }
+        .social-links {
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
         }
 
         @media (max-width: 480px) {
@@ -633,7 +727,7 @@
 <body>
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    
+
     <!-- Sidebar Menu -->
     <div class="sidebar-menu" id="sidebarMenu">
         <ul class="sidebar-nav">
@@ -645,6 +739,14 @@
             <li><a href="gallery.html">🎨 Meme Gallery</a></li>
             <li><a href="whitelist.html">✅ Whitelist</a></li>
         </ul>
+
+        <!-- Theme Toggle in Sidebar -->
+        <div class="sidebar-theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span id="themeText">Dark Mode</span>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
     </div>
 
     <div class="header container">
@@ -652,7 +754,7 @@
             <img src="dior.jpg" alt="Dior Logo" class="logo-image">
             <span class="logo-text">$DIOR</span>
         </div>
-        
+
         <div class="hamburger-menu" id="hamburgerMenu">
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
@@ -663,7 +765,8 @@
     <div class="container">
         <div class="whitelist-hero">
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
+                <img src="diorthecowlogo.jpg" alt="DiorTheCow Logo"
+                    style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #8b4513; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);">
                 <h1>✅ Whitelist Access</h1>
             </div>
             <p>Exclusive early access for our most valued community members!</p>
@@ -674,7 +777,8 @@
             <div class="whitelist-content">
                 <div class="highlight-box">
                     <div class="highlight-text">
-                        All Arena ticket holders, @Nochill badge holders only will be whitelisted to buy first during the bonding curve
+                        All Arena ticket holders, @Nochill badge holders only will be whitelisted to buy first during
+                        the bonding curve
                     </div>
                 </div>
 
@@ -682,7 +786,8 @@
                     <div class="badge-item">
                         <div class="badge-icon">🎫</div>
                         <div class="badge-title">Arena Ticket Holders</div>
-                        <div class="badge-desc">Own DiorTheCow tickets on Stars Arena to qualify for whitelist access</div>
+                        <div class="badge-desc">Own DiorTheCow tickets on Stars Arena to qualify for whitelist access
+                        </div>
                     </div>
                     <div class="badge-item">
                         <div class="badge-icon">🏆</div>
@@ -705,10 +810,14 @@
             <h2>🔥 Whitelist Benefits</h2>
             <div class="whitelist-content">
                 <div style="text-align: left; margin: 0 auto; max-width: 600px;">
-                    <p><strong>✨ Early Access:</strong> Be among the first to buy $DIOR tokens during the bonding curve phase</p>
-                    <p><strong>💎 Better Pricing:</strong> Get access to the most favorable token prices before public sale</p>
-                    <p><strong>🎯 Guaranteed Allocation:</strong> Secure your position before tokens are available to the general public</p>
-                    <p><strong>🏆 VIP Status:</strong> Join an exclusive group of early supporters and community members</p>
+                    <p><strong>✨ Early Access:</strong> Be among the first to buy $DIOR tokens during the bonding curve
+                        phase</p>
+                    <p><strong>💎 Better Pricing:</strong> Get access to the most favorable token prices before public
+                        sale</p>
+                    <p><strong>🎯 Guaranteed Allocation:</strong> Secure your position before tokens are available to
+                        the general public</p>
+                    <p><strong>🏆 VIP Status:</strong> Join an exclusive group of early supporters and community members
+                    </p>
                     <p><strong>🚀 Future Perks:</strong> Priority access to future DiorTheCow projects and utilities</p>
                 </div>
             </div>
@@ -748,14 +857,14 @@
         // Theme Toggle Functionality
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            
+
             // Save theme preference to localStorage
             const isDarkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         }
 
         // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
