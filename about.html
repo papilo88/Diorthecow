@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About DiorTheCow ($DIOR) - Not Your Average Cryptocurrency. Real cow, real value on Avalanche blockchain.">
+    <meta name="description"
+        content="About DiorTheCow ($DIOR) - Not Your Average Cryptocurrency. Real cow, real value on Avalanche blockchain.">
     <meta name="theme-color" content="#8b4513">
     <title>About - DiorTheCow ($DIOR)</title>
     <style>
@@ -23,7 +24,8 @@
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            padding-bottom: 80px; /* Add padding for fixed footer */
+            padding-bottom: 80px;
+            /* Add padding for fixed footer */
         }
 
         /* --- Layout Container --- */
@@ -52,7 +54,8 @@
 
         .logo {
             font-size: 1.8em;
-            font-weight: 900; /* Made more bold */
+            font-weight: 900;
+            /* Made more bold */
             background: linear-gradient(45deg, #8b4513, #a0522d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -61,7 +64,7 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .logo-image {
@@ -69,12 +72,19 @@
             height: 50px;
             border-radius: 50%;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* --- Center section with social buttons --- */
@@ -104,10 +114,6 @@
             border-radius: 2px;
         }
 
-        body.dark-mode .hamburger-line {
-            background: #fff;
-        }
-
         .hamburger-menu.active .hamburger-line:nth-child(1) {
             transform: rotate(45deg) translate(6px, 6px);
         }
@@ -134,7 +140,7 @@
             transition: right 0.3s ease;
             z-index: 1002;
             padding: 100px 30px 30px 30px;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
         }
 
@@ -148,7 +154,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -161,7 +167,8 @@
         }
 
         .nav-menu {
-            display: none; /* Hide original nav menu */
+            display: none;
+            /* Hide original nav menu */
         }
 
         .sidebar-nav {
@@ -184,7 +191,7 @@
             display: block;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar-nav a:hover {
@@ -192,7 +199,7 @@
             border-left-color: #fff;
             transform: translateX(-10px);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-links {
@@ -222,7 +229,7 @@
             background: linear-gradient(45deg, #8b4513, #a0522d) !important;
             color: #fff !important;
             font-weight: bold !important;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3) !important;
             border: 2px solid #8b4513;
         }
@@ -324,237 +331,29 @@
             margin: 8px 0;
         }
 
-        /* --- Dark Mode Styles --- */
-        body.dark-mode {
-            background: linear-gradient(135deg, #8b4513, #a0522d);
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .header {
-            background: rgba(139, 69, 19, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-mode .logo {
-            background: linear-gradient(45deg, #f8f5f0, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        body.dark-mode .social-link-btn {
-            background: rgba(248, 245, 240, 0.9);
-            color: #8b4513;
-            border: 2px solid #f8f5f0;
-        }
-
-        body.dark-mode .social-link-btn:hover {
-            background: #f8f5f0;
-            color: #654321;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(248, 245, 240, 0.4);
-        }
-
-        body.dark-mode .section {
-            background: rgba(139, 69, 19, 0.3);
-            border: 1px solid rgba(248, 245, 240, 0.2);
-        }
-
-        body.dark-mode .section::before {
-            background: linear-gradient(90deg, #f8f5f0, #fff, #f4e4bc);
-        }
-
-        body.dark-mode .section h2 {
-            color: #f8f5f0;
-        }
-
-        body.dark-mode .section h2::after {
-            background: linear-gradient(90deg, #f8f5f0, #fff);
-        }
-
-        body.dark-mode .footer {
-            background: rgba(139, 69, 19, 0.3);
-            border: 1px solid rgba(248, 245, 240, 0.2);
-            color: #f8f5f0;
-        }
-
-        /* --- Dark Mode Toggle --- */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            background: linear-gradient(45deg, #8b4513, #a0522d);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid #8b4513;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-            color: #fff;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .theme-toggle-switch {
-            width: 35px;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 18px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle-switch::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 14px;
-            height: 14px;
-            background: #fff;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        body.dark-mode .theme-toggle {
-            background: linear-gradient(45deg, #f8f5f0, #fff);
-            border-color: #f8f5f0;
-            color: #8b4513;
-        }
-
-        body.dark-mode .theme-toggle-switch {
-            background: rgba(139, 69, 19, 0.3);
-        }
-
-        body.dark-mode .theme-toggle-switch::before {
-            transform: translateX(17px);
-            background: #8b4513;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-        }
-
-        body.dark-mode .theme-toggle:hover {
-            box-shadow: 0 6px 20px rgba(248, 245, 240, 0.4);
-        }
-
-        /* Mobile theme toggle in sidebar */
-        .sidebar-theme-toggle {
-            padding: 15px 20px;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .sidebar-theme-toggle .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-            font-size: 11px;
-            padding: 8px 10px;
-        }
-
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .container {
                 padding: 20px 15px;
-                max-width: 100%;
             }
 
-            .header {
-                padding: 15px 0;
-                margin-bottom: 15px;
-                position: fixed !important;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1000;
-                background: rgba(255, 255, 255, 0.98) !important;
-                backdrop-filter: blur(15px);
-                -webkit-backdrop-filter: blur(15px);
-                justify-content: space-between;
+            .center-section {
+                flex-direction: column;
+                gap: 10px;
             }
 
-            /* Hide desktop theme toggle on mobile */
-            .theme-toggle {
-                display: none !important;
+            .social-links {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
             }
 
-            .hamburger-menu {
-                position: fixed !important;
-                top: 15px;
-                right: 15px;
-                z-index: 1001;
-                background: rgba(255, 255, 255, 0.9);
-                padding: 8px;
-                border-radius: 8px;
-                backdrop-filter: blur(10px);
-            }
-
-            body {
-                padding-top: 80px;
-            }
-
-            .sidebar-menu {
-                width: 280px;
-                padding: 90px 20px 20px 20px;
-                z-index: 1002;
-            }
-
-            .sidebar-overlay {
-                z-index: 1001;
-            }
-
-            .sidebar-nav li {
-                margin-bottom: 15px;
-            }
-
-            .sidebar-nav a {
-                padding: 12px 15px;
-                font-size: 1.1em;
-            }
-
-            .section {
-                padding: 25px 20px;
-            }
-            
             .section-cow {
                 width: 80px;
                 height: 80px;
                 margin: 0 auto 15px auto;
                 float: none;
                 display: block;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hamburger-menu {
-                position: fixed !important;
-                top: 10px;
-                right: 10px;
-                z-index: 1003;
-                background: rgba(139, 69, 19, 0.9) !important;
-                padding: 6px;
-                border-radius: 6px;
-                -webkit-backdrop-filter: blur(10px);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            }
-
-            .hamburger-line {
-                background: #fff !important;
-            }
-
-            body {
-                padding-top: 70px;
-            }
-
-            .sidebar-theme-toggle .theme-toggle {
-                font-size: 10px;
-                padding: 6px 8px;
             }
         }
 
@@ -585,7 +384,7 @@
 <body>
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    
+
     <!-- Sidebar Menu -->
     <div class="sidebar-menu" id="sidebarMenu">
         <ul class="sidebar-nav">
@@ -597,22 +396,12 @@
             <li><a href="gallery.html">🎨 Meme Gallery</a></li>
             <li><a href="whitelist.html">✅ Whitelist</a></li>
         </ul>
-        
-        <!-- Theme Toggle in Sidebar -->
-        <div class="sidebar-theme-toggle">
-            <div class="theme-toggle" onclick="toggleTheme()">
-                <span id="themeText">Dark Mode</span>
-                <div class="theme-toggle-switch"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header container">
+    </div>    <div class="header container">
         <div class="logo">
             <img src="dior.jpg" alt="Dior Logo" class="logo-image">
             <span class="logo-text">$DIOR</span>
         </div>
-        
+
         <div class="hamburger-menu" id="hamburgerMenu">
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
@@ -672,14 +461,14 @@
         // Theme Toggle Functionality
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            
+
             // Save theme preference to localStorage
             const isDarkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
         }
 
         // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
